@@ -7,4 +7,5 @@
     <string name="text_music">Music</string>
     <string name="text_restaurants">Nearby</string>
     <string name="text_more">More</string>
+    <string name="no_location_detected">No location detected. Make sure location is enabled on the device.</string>
 </resources>
