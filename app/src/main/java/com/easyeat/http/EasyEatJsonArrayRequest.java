@@ -83,6 +83,4 @@ public class EasyEatJsonArrayRequest extends JsonArrayRequest {
     public Map<String, String> getParams() {
         return params;
     }
-
-
 }

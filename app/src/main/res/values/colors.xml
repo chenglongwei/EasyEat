@@ -4,4 +4,20 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
+
+    <color name="activity_bg">#ececec</color>
+
+    <color name="black">#212121</color>
+    <color name="grey">#646466</color>
+    <color name="grey_pressed">#f2f0f0</color>
+    <color name="light_grey">#c8c8cc</color>
+
+    <color name="divider">#d6d6d6</color>
+
+    <color name="blue">#2891f7</color>
+    <color name="blue_pressed">#1e7ef5</color>
+    <color name="red">#d32f2f</color>
+    <color name="red_pressed">#c12a2a</color>
+    <color name="bt_disable">#bbbcbf</color>
+
 </resources>

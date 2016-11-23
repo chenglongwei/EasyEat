@@ -3,4 +3,21 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="font_huge">28sp</dimen>
+    <dimen name="font_large">22sp</dimen>
+    <dimen name="font_medium">16sp</dimen>
+    <dimen name="font_medium_hint">14sp</dimen>
+    <dimen name="font_small">13sp</dimen>
+    <dimen name="font_micro">11sp</dimen>
+
+    <dimen name="margin_large">50dp</dimen>
+    <dimen name="margin_medium">30dp</dimen>
+    <dimen name="margin_small">15dp</dimen>
+    <dimen name="margin_micro">10dp</dimen>
+    <dimen name="margin_tiny">5dp</dimen>
+
+    <dimen name="item_restaurant_height">100dp</dimen>
+    <dimen name="restaurant_picture_size">70dp</dimen>
+
 </resources>

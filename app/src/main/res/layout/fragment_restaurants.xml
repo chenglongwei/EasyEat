@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <!--不用padding top因为代码会加入header-->
+    <ListView
+        android:id="@+id/lv_restaurants"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="@string/text_restaurants"/>
+        android:layout_height="match_parent"
+        android:divider="@color/activity_bg"
+        android:dividerHeight="@dimen/margin_tiny"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/margin_small"
+        tools:listitem="@layout/item_restaurant" />
 
-</RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
