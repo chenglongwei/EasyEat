@@ -58,6 +58,7 @@ public class RestaurantAdapter extends BaseAdapter {
             holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
             holder.tv_address = (TextView) convertView.findViewById(R.id.tv_address);
             holder.tv_description = (TextView) convertView.findViewById(R.id.tv_description);
+            holder.tv_distance = (TextView) convertView.findViewById(R.id.tv_distance);
             holder.networkImageView = (NetworkImageView) convertView.findViewById(R.id.networkImageView);
             convertView.setTag(holder);
         }
@@ -73,6 +74,7 @@ public class RestaurantAdapter extends BaseAdapter {
         holder.tv_name.setText(item.name);
         holder.tv_address.setText(item.address);
         holder.tv_description.setText(item.description);
+        holder.tv_distance.setText(item.distance);
         holder.networkImageView.setImageUrl(item.url, RequestManager.getImageLoader());
     }
 
@@ -89,6 +91,7 @@ public class RestaurantAdapter extends BaseAdapter {
         TextView tv_name;
         TextView tv_address;
         TextView tv_description;
+        TextView tv_distance;
         NetworkImageView networkImageView;
     }
 }

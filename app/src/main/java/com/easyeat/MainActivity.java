@@ -46,6 +46,7 @@ public class MainActivity extends BaseActivity implements
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         initNavigation();
         buildGoogleApiClient();
+        setTitle(R.string.text_restaurants);
     }
 
     private void initNavigation() {
@@ -65,18 +66,21 @@ public class MainActivity extends BaseActivity implements
                                     restaurantFragment = new RestaurantsFragment();
                                 }
                                 fragment = restaurantFragment;
+                                setTitle(R.string.text_restaurants);
                                 break;
                             case R.id.action_favorites:
                                 if (favoriteFragment == null) {
                                     favoriteFragment = new FavoritesFragment();
                                 }
                                 fragment = favoriteFragment;
+                                setTitle(R.string.text_favorites);
                                 break;
                             case R.id.action_more:
                                 if (moreFragment == null) {
                                     moreFragment = new MoreFragment();
                                 }
                                 fragment = moreFragment;
+                                setTitle(R.string.text_more);
                                 break;
                         }
 

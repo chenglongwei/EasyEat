@@ -4,13 +4,13 @@
     <item
         android:id="@+id/action_restaurants"
         android:enabled="true"
-        android:icon="@drawable/ic_favorite_white_24dp"
+        android:icon="@drawable/ic_access_time_white_24dp"
         android:title="@string/text_restaurants"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_favorites"
         android:enabled="true"
-        android:icon="@drawable/ic_access_time_white_24dp"
+        android:icon="@drawable/ic_favorite_white_24dp"
         android:title="@string/text_favorites"
         app:showAsAction="ifRoom" />
     <item

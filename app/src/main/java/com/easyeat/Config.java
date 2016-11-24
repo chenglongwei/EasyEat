@@ -24,4 +24,5 @@ public class Config {
 
     // URL
     public static final String HTTP_GET_RESTAURANT = HOST + "/restaurant";
+    public static final String HTTP_GET_FAVORITES_RESTAURANT = HOST + "/restaurant/favorites";
 }

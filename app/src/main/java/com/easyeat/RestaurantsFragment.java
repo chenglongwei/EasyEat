@@ -52,6 +52,7 @@ public class RestaurantsFragment extends Fragment implements AdapterView.OnItemC
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         lv_restaurants = (ListView) view.findViewById(R.id.lv_restaurants);
+
         adapter = new RestaurantAdapter(getContext(), restaurants);
         lv_restaurants.setAdapter(adapter);
         lv_restaurants.setOnItemClickListener(this);
@@ -80,12 +81,13 @@ public class RestaurantsFragment extends Fragment implements AdapterView.OnItemC
                 new BaseResponseListener((BaseActivity) getActivity(), null) {
                     @Override
                     public void onSuccessResponse(JSONObject response) {
+                        swipeContainer.setRefreshing(false);
+
                         JSONArray data = response.optJSONArray(Config.key_data);
                         restaurants = new Gson().fromJson(data.toString(), new TypeToken<List<Restaurant>>() {
                         }.getType());
 
                         adapter.setRestaurants(restaurants);
-                        swipeContainer.setRefreshing(false);
                     }
 
                     @Override
