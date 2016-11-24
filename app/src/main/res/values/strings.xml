@@ -9,4 +9,8 @@
     <string name="network_error">Network not stable</string>
     <string name="no_favorites">No favorites now.</string>
     <string name="action_search">search</string>
+    <string name="my_account">My account</string>
+    <string name="food_order">Food Order</string>
+    <string name="reservation">Reservation</string>
+    <string name="about_us">About us</string>
 </resources>

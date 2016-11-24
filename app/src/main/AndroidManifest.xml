@@ -20,7 +20,6 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/text_restaurants"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

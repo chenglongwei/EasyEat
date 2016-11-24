@@ -50,6 +50,8 @@ public class MainActivity extends BaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setTitle(getString(R.string.text_restaurants));
+
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager();
 

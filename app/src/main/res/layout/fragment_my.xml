@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg">
+
+    <!--My account-->
+    <include
+        android:id="@+id/rl_my_account"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bt_height"
+        android:layout_marginTop="@dimen/margin_small"
+        layout="@layout/layout_forward" />
+
+    <!--Food Orders-->
+    <include
+        android:id="@+id/rl_food_order"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bt_height"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_below="@+id/rl_my_account"
+        layout="@layout/layout_forward" />
+
+    <!--Reservations-->
+    <include
+        android:id="@+id/rl_reservation"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bt_height"
+        android:layout_below="@+id/rl_food_order"
+        layout="@layout/layout_forward" />
+
+    <!--About us-->
+    <include
+        android:id="@+id/rl_about_us"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bt_height"
+        android:layout_below="@+id/rl_reservation"
+        layout="@layout/layout_forward" />
+
+</RelativeLayout>
