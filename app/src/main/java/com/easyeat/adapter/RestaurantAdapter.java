@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.android.volley.toolbox.NetworkImageView;
 import com.easyeat.R;
 import com.easyeat.bean.Restaurant;
-import com.easyeat.http.EasyEatRequestQueue;
+import com.easyeat.http.RequestManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +73,7 @@ public class RestaurantAdapter extends BaseAdapter {
         holder.tv_name.setText(item.name);
         holder.tv_address.setText(item.address);
         holder.tv_description.setText(item.description);
-        holder.networkImageView.setImageUrl(item.url, EasyEatRequestQueue.getInstance(context.getApplicationContext()).getImageLoader());
+        holder.networkImageView.setImageUrl(item.url, RequestManager.getImageLoader());
     }
 
     public void setRestaurants(List<Restaurant> restaurants) {

@@ -3,7 +3,9 @@ package com.easyeat;
 import android.app.Application;
 import android.text.TextUtils;
 
+import com.android.volley.VolleyLog;
 import com.easyeat.bean.User;
+import com.easyeat.http.RequestManager;
 import com.easyeat.util.SharedPrefsUtil;
 import com.easyeat.util.UniqueDeviceIDFactory;
 
@@ -18,12 +20,19 @@ public class EasyEatApplication extends Application {
     private static User currentUser;
     private static String session_id;
 
-
     @Override
     public void onCreate() {
         super.onCreate();
         deviceGuid = UniqueDeviceIDFactory.getUniqueDeviceID(getApplicationContext());
         instance = this;
+        initVolley();
+    }
+
+    private void initVolley() {
+        VolleyLog.setTag("EasyEat");
+        VolleyLog.DEBUG = BuildConfig.DEBUG;
+        String userAgent = "volley/0 Android EasyEat/" + BuildConfig.VERSION_NAME;
+        RequestManager.init(getApplicationContext());
     }
 
     public static User getCurrentUser() {

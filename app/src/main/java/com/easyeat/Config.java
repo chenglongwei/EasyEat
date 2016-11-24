@@ -13,11 +13,15 @@ public class Config {
     public static final String key_latitude = "latitude";
     public static final String key_longtitude= "longtitude";
     public static final String key_restaurant = "restaurant";
+    public static final String key_message = "message";
+    public static final String key_status = "status";
+    public static final String OK = "OK";
+    public static final String key_data = "data";
 
     // position information
     public static double latitude = 0.0;
     public static double longtitude = 0.0;
 
+    // URL
     public static final String HTTP_GET_RESTAURANT = HOST + "/restaurant";
-
 }

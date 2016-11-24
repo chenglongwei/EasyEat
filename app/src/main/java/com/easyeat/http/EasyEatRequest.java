@@ -1,7 +1,10 @@
 package com.easyeat.http;
 
+import android.util.Log;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.easyeat.Config;
 import com.easyeat.EasyEatApplication;
@@ -18,12 +21,49 @@ import java.util.Map;
  * Created by chenglongwei on 11/22/16.
  */
 
-public class EasyEatJsonObjectRequest extends JsonObjectRequest {
+public class EasyEatRequest extends JsonObjectRequest {
     private String url;
     private Map<String, String> params;
+    private final Response.Listener listener;
 
-    public EasyEatJsonObjectRequest(int method, String url, JSONObject jsonRequest, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+    public EasyEatRequest(int method, String url,
+                          final EasyEatResponseListener<JSONObject> listener) {
+        this(method, url, null, listener);
+    }
+
+    public EasyEatRequest(int method, String url, JSONObject jsonRequest,
+                          final EasyEatResponseListener<JSONObject> listener) {
+        this(method, url, jsonRequest, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    listener.onResponse(response);
+                } catch (Exception e) {
+                    if (e.getMessage() != null) {
+                        Log.e(Config.TAG, e.getMessage());
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try {
+                    listener.onErrorResponse(error);
+                } catch (Exception e) {
+                    if (e.getMessage() != null) {
+                        Log.e(Config.TAG, e.getMessage());
+                    }
+                }
+            }
+        });
+        this.url = url;
+    }
+
+    public EasyEatRequest(int method, String url, JSONObject jsonRequest,
+                          Response.Listener<JSONObject> listener,
+                          Response.ErrorListener errorListener) {
         super(method, url, jsonRequest, listener, errorListener);
+        this.listener = listener;
         this.url = url;
     }
 
@@ -73,7 +113,7 @@ public class EasyEatJsonObjectRequest extends JsonObjectRequest {
 
     private String urlEncode(String value) {
         try {
-            return URLEncoder.encode(value, "UTF-8");
+            return URLEncoder.encode(value, RequestManager.encoding);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

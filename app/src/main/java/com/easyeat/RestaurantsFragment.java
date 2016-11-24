@@ -17,12 +17,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.easyeat.adapter.RestaurantAdapter;
 import com.easyeat.bean.Restaurant;
+import com.easyeat.http.BaseResponseListener;
 import com.easyeat.http.EasyEatJsonArrayRequest;
-import com.easyeat.http.EasyEatRequestQueue;
+import com.easyeat.http.RequestManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +34,7 @@ import java.util.Map;
  * Created by chenglongwei on 11/22/16.
  */
 
-public class RestaurantsFragment extends Fragment implements AdapterView.OnItemClickListener{
+public class RestaurantsFragment extends Fragment implements AdapterView.OnItemClickListener {
     private SwipeRefreshLayout swipeContainer;
     private ListView lv_restaurants;
     private RestaurantAdapter adapter;
@@ -70,34 +72,35 @@ public class RestaurantsFragment extends Fragment implements AdapterView.OnItemC
     }
 
     private void backgroundLoadRestaurants() {
-        EasyEatJsonArrayRequest restaurantRequest = new EasyEatJsonArrayRequest(
-                Request.Method.GET, Config.HTTP_GET_RESTAURANT, null,
-                new Response.Listener<JSONArray>() {
+        Map<String, String> params = new HashMap<>();
+        params.put(Config.key_latitude, String.valueOf(Config.latitude));
+        params.put(Config.key_longtitude, String.valueOf(Config.longtitude));
+
+        RequestManager.backgroundRequest(Request.Method.GET, Config.HTTP_GET_RESTAURANT, params,
+                new BaseResponseListener((BaseActivity) getActivity(), null) {
                     @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d(Config.TAG, response.toString());
-                        restaurants = new Gson().fromJson(response.toString(), new TypeToken<List<Restaurant>>() {
+                    public void onSuccessResponse(JSONObject response) {
+                        JSONArray data = response.optJSONArray(Config.key_data);
+                        restaurants = new Gson().fromJson(data.toString(), new TypeToken<List<Restaurant>>() {
                         }.getType());
 
                         adapter.setRestaurants(restaurants);
                         swipeContainer.setRefreshing(false);
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d(Config.TAG, error.toString());
-                swipeContainer.setRefreshing(false);
-            }
-        });
 
-        Map<String, String> params = new HashMap<>();
-        params.put(Config.key_latitude, String.valueOf(Config.latitude));
-        params.put(Config.key_longtitude, String.valueOf(Config.longtitude));
-        restaurantRequest.setParams(params);
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        super.onResponse(response);
+                        swipeContainer.setRefreshing(false);
+                    }
 
-        EasyEatRequestQueue.getInstance(getContext()).getRequestQueue().add(restaurantRequest);
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        super.onErrorResponse(error);
+                        swipeContainer.setRefreshing(false);
+                    }
+                });
     }
-
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
