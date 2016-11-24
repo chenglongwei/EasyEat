@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +12,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.easyeat.adapter.RestaurantAdapter;
 import com.easyeat.bean.Restaurant;
 import com.easyeat.http.BaseResponseListener;
-import com.easyeat.http.EasyEatJsonArrayRequest;
 import com.easyeat.http.RequestManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -41,6 +38,7 @@ public class RestaurantsFragment extends Fragment implements AdapterView.OnItemC
     private List<Restaurant> restaurants;
 
     public RestaurantsFragment() {
+        backgroundLoadRestaurants("");
     }
 
     @Override
@@ -65,17 +63,16 @@ public class RestaurantsFragment extends Fragment implements AdapterView.OnItemC
                 // Your code to refresh the list here.
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
-                backgroundLoadRestaurants();
+                backgroundLoadRestaurants("");
             }
         });
-
-        backgroundLoadRestaurants();
     }
 
-    private void backgroundLoadRestaurants() {
+    private void backgroundLoadRestaurants(String query) {
         Map<String, String> params = new HashMap<>();
         params.put(Config.key_latitude, String.valueOf(Config.latitude));
         params.put(Config.key_longtitude, String.valueOf(Config.longtitude));
+        params.put(Config.key_query, query);
 
         RequestManager.backgroundRequest(Request.Method.GET, Config.HTTP_GET_RESTAURANT, params,
                 new BaseResponseListener((BaseActivity) getActivity(), null) {
@@ -116,5 +113,9 @@ public class RestaurantsFragment extends Fragment implements AdapterView.OnItemC
         Intent intent = new Intent(getContext(), RestaurantIntroActivity.class);
         intent.putExtra(Config.key_restaurant, restaurant);
         getContext().startActivity(intent);
+    }
+
+    public void submitQuery(String query) {
+        backgroundLoadRestaurants(query);
     }
 }

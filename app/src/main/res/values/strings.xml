@@ -10,4 +10,5 @@
     <string name="no_location_detected">No location detected. Make sure location is enabled on the device.</string>
     <string name="network_error">Network not stable</string>
     <string name="no_favorites">No favorites now.</string>
+    <string name="action_search">search</string>
 </resources>

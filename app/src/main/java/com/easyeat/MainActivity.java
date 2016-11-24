@@ -6,11 +6,13 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.easyeat.util.Log;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
@@ -47,6 +49,32 @@ public class MainActivity extends BaseActivity implements
         initNavigation();
         buildGoogleApiClient();
         setTitle(R.string.text_restaurants);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        // Configure the search info and add any event listeners...
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                fragment = restaurantFragment;
+                fragmentManager.beginTransaction().replace(R.id.main_container, fragment).commit();
+                ((RestaurantsFragment)restaurantFragment).submitQuery(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     private void initNavigation() {
@@ -128,8 +156,8 @@ public class MainActivity extends BaseActivity implements
         if (mLastLocation != null) {
             Config.latitude = mLastLocation.getLatitude();
             Config.longtitude = mLastLocation.getLongitude();
-            Log.d(Config.TAG, "latitude: " + Config.latitude);
-            Log.d(Config.TAG, "longitude: " + Config.longtitude);
+            Log.d("latitude: " + Config.latitude);
+            Log.d("longitude: " + Config.longtitude);
         } else {
             Toast.makeText(this, R.string.no_location_detected, Toast.LENGTH_LONG).show();
         }

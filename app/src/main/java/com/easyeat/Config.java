@@ -17,6 +17,7 @@ public class Config {
     public static final String key_status = "status";
     public static final String OK = "OK";
     public static final String key_data = "data";
+    public static final String key_query = "query";
 
     // position information
     public static double latitude = 0.0;
@@ -25,4 +26,5 @@ public class Config {
     // URL
     public static final String HTTP_GET_RESTAURANT = HOST + "/restaurant";
     public static final String HTTP_GET_FAVORITES_RESTAURANT = HOST + "/restaurant/favorites";
+
 }
