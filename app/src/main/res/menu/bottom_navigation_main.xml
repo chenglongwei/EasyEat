@@ -4,7 +4,7 @@
     <item
         android:id="@+id/action_restaurants"
         android:enabled="true"
-        android:icon="@drawable/ic_access_time_white_24dp"
+        android:icon="@drawable/ic_location_city_white_24dp"
         android:title="@string/text_restaurants"
         app:showAsAction="ifRoom" />
     <item
@@ -14,9 +14,9 @@
         android:title="@string/text_favorites"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_more"
+        android:id="@+id/action_me"
         android:enabled="true"
-        android:icon="@drawable/ic_audiotrack_white_24dp"
-        android:title="@string/text_more"
+        android:icon="@drawable/ic_personal_white_24dp"
+        android:title="@string/text_me"
         app:showAsAction="ifRoom" />
 </menu>

@@ -10,8 +10,8 @@ import android.view.ViewGroup;
  * Created by chenglongwei on 11/22/16.
  */
 
-public class MoreFragment extends Fragment {
-    public MoreFragment() {
+public class MyFragment extends Fragment {
+    public MyFragment() {
     }
 
     @Override

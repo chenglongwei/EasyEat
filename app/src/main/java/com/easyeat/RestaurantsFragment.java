@@ -17,6 +17,7 @@ import com.easyeat.adapter.RestaurantAdapter;
 import com.easyeat.bean.Restaurant;
 import com.easyeat.http.BaseResponseListener;
 import com.easyeat.http.RequestManager;
+import com.easyeat.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -38,7 +39,6 @@ public class RestaurantsFragment extends Fragment implements AdapterView.OnItemC
     private List<Restaurant> restaurants;
 
     public RestaurantsFragment() {
-        backgroundLoadRestaurants("");
     }
 
     @Override
@@ -66,6 +66,8 @@ public class RestaurantsFragment extends Fragment implements AdapterView.OnItemC
                 backgroundLoadRestaurants("");
             }
         });
+        backgroundLoadRestaurants("");
+
     }
 
     private void backgroundLoadRestaurants(String query) {

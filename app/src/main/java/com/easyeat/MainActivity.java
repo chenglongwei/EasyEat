@@ -7,11 +7,13 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.easyeat.adapter.ViewPagerAdapter;
 import com.easyeat.util.Log;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -24,11 +26,14 @@ public class MainActivity extends BaseActivity implements
 
     // For views
     private BottomNavigationView bottomNavigationView;
-    private Fragment fragment;
+    private ViewPager viewPager;
+    private MenuItem prevMenuItem;
+    private SearchView searchView;
+
+    // fragments
     private Fragment restaurantFragment;
     private Fragment favoriteFragment;
-    private Fragment moreFragment;
-    private FragmentManager fragmentManager;
+    private Fragment myFragment;
 
     /**
      * Provides the entry point to Google Play services.
@@ -44,11 +49,14 @@ public class MainActivity extends BaseActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fragmentManager = getSupportFragmentManager();
+
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager();
+
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         initNavigation();
+
         buildGoogleApiClient();
-        setTitle(R.string.text_restaurants);
     }
 
     @Override
@@ -56,16 +64,19 @@ public class MainActivity extends BaseActivity implements
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        setupSearchView();
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    private void setupSearchView() {
         // Configure the search info and add any event listeners...
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                fragment = restaurantFragment;
-                fragmentManager.beginTransaction().replace(R.id.main_container, fragment).commit();
-                ((RestaurantsFragment)restaurantFragment).submitQuery(query);
-                return false;
+                viewPager.setCurrentItem(0);
+                ((RestaurantsFragment) restaurantFragment).submitQuery(query);
+                return true;
             }
 
             @Override
@@ -73,15 +84,9 @@ public class MainActivity extends BaseActivity implements
                 return false;
             }
         });
-
-        return super.onCreateOptionsMenu(menu);
     }
 
     private void initNavigation() {
-        // set default fragment
-        restaurantFragment = new RestaurantsFragment();
-        fragmentManager.beginTransaction().replace(R.id.main_container, restaurantFragment).commit();
-
         // set different fragment when navigation selected
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -89,33 +94,72 @@ public class MainActivity extends BaseActivity implements
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_restaurants:
-                                // singleton navigation fragments
-                                if (restaurantFragment == null) {
-                                    restaurantFragment = new RestaurantsFragment();
-                                }
-                                fragment = restaurantFragment;
-                                setTitle(R.string.text_restaurants);
+                                viewPager.setCurrentItem(0);
                                 break;
                             case R.id.action_favorites:
-                                if (favoriteFragment == null) {
-                                    favoriteFragment = new FavoritesFragment();
-                                }
-                                fragment = favoriteFragment;
-                                setTitle(R.string.text_favorites);
+                                viewPager.setCurrentItem(1);
                                 break;
-                            case R.id.action_more:
-                                if (moreFragment == null) {
-                                    moreFragment = new MoreFragment();
-                                }
-                                fragment = moreFragment;
-                                setTitle(R.string.text_more);
+                            case R.id.action_me:
+                                viewPager.setCurrentItem(2);
                                 break;
                         }
-
-                        fragmentManager.beginTransaction().replace(R.id.main_container, fragment).commit();
-                        return true;
+                        return false;
                     }
-                });
+                }
+
+        );
+    }
+
+    private void setupViewPager() {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        restaurantFragment = new RestaurantsFragment();
+        favoriteFragment = new FavoritesFragment();
+        myFragment = new MyFragment();
+
+        adapter.addFragment(restaurantFragment);
+        adapter.addFragment(favoriteFragment);
+        adapter.addFragment(myFragment);
+        viewPager.setAdapter(adapter);
+
+        // https://developer.android.com/reference/android/support/v4/view/ViewPager.html#setOffscreenPageLimit(int)
+        // retain 2 pages in memory
+        viewPager.setOffscreenPageLimit(2);
+
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (prevMenuItem != null) {
+                    prevMenuItem.setChecked(false);
+                } else {
+                    bottomNavigationView.getMenu().getItem(0).setChecked(false);
+                }
+
+                MenuItem item = bottomNavigationView.getMenu().getItem(position);
+
+                setTitle(item.getTitle());
+                item.setChecked(true);
+                prevMenuItem = item;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        // If you want to remove sliding of fragments, add following;
+//        viewPager.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                return true;
+//            }
+//        });
     }
 
     /**
