@@ -10,39 +10,43 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
-public class SignInActivity extends BaseActivity implements OnClickListener {
+public class RegisterActivity extends BaseActivity implements OnClickListener {
     // UI references.
     private EditText et_email;
     private EditText et_password;
-    private Button bt_sign_in;
-    private TextView tv_register;
+    private EditText et_username;
+    private EditText et_address;
+    private Button bt_register;
+    private TextView tv_sign_in;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
         // Set up the login form.
         et_email = (EditText) findViewById(R.id.et_email);
         et_password = (EditText) findViewById(R.id.et_password);
+        et_username = (EditText) findViewById(R.id.et_username);
+        et_address = (EditText) findViewById(R.id.et_address);
 
-        bt_sign_in = (Button) findViewById(R.id.bt_sign_in);
-        bt_sign_in.setOnClickListener(this);
+        bt_register = (Button) findViewById(R.id.bt_register);
+        bt_register.setOnClickListener(this);
 
-        tv_register = (TextView) findViewById(R.id.tv_register);
-        tv_register.setOnClickListener(this);
+        tv_sign_in = (TextView) findViewById(R.id.tv_sign_in);
+        tv_sign_in.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_register:
-                Intent intent = new Intent(this, RegisterActivity.class);
+            case R.id.tv_sign_in:
+                Intent intent = new Intent(this, SignInActivity.class);
                 startActivity(intent);
                 finish();
                 break;
-            case R.id.bt_sign_in:
-                attemptLogin();
+            case R.id.bt_register:
+                attemptRegister();
                 break;
         }
     }
@@ -52,7 +56,7 @@ public class SignInActivity extends BaseActivity implements OnClickListener {
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() {
+    private void attemptRegister() {
         // Reset errors.
         et_email.setError(null);
         et_password.setError(null);
@@ -89,11 +93,11 @@ public class SignInActivity extends BaseActivity implements OnClickListener {
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            backgroundLogin();
+            backgroundRegister();
         }
     }
 
-    private void backgroundLogin() {
+    private void backgroundRegister() {
 
     }
 

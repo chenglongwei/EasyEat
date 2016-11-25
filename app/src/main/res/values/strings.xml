@@ -28,4 +28,9 @@
         completions."
     </string>
     <string name="register_hint">Not member? Register here.</string>
+    <string name="prompt_username">Name (optional)</string>
+    <string name="prompt_address">Address (optional)</string>
+    <string name="title_activity_register">Register</string>
+    <string name="action_register">register</string>
+    <string name="sign_in_hint">Already a member? Sign in here.</string>
 </resources>

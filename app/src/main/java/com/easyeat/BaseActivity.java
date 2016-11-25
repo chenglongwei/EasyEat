@@ -23,6 +23,7 @@ import org.json.JSONObject;
 public class BaseActivity extends AppCompatActivity {
     protected Handler handler;
     protected Toast toast;
+    protected static final int Request_Register = 1000;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
