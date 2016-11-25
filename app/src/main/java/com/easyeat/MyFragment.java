@@ -1,5 +1,6 @@
 package com.easyeat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -61,6 +62,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_my_account:
+                Intent intent = new Intent(getActivity(), SignInActivity.class);
+                getActivity().startActivity(intent);
                 break;
             case R.id.rl_food_order:
                 break;

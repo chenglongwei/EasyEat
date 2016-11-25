@@ -6,11 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.easyeat.http.RequestManager;
 import com.easyeat.util.Log;
+import com.easyeat.util.Md5Util;
 
 import org.json.JSONObject;
 
@@ -66,5 +68,9 @@ public class BaseActivity extends AppCompatActivity {
             }
         }
         showNetworkErrorToast();
+    }
+
+    public String getMd5Password(String password) {
+        return Md5Util.encrypt(password, Config.salt);
     }
 }
