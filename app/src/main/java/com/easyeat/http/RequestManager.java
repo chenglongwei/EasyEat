@@ -46,17 +46,18 @@ public class RequestManager {
         return imageLoader;
     }
 
-    public static void backgroundRequest(int method, String url, Map<String, String> params,
+    public static void backgroundRequest(int method, String url,
                                          EasyEatResponseListener<JSONObject> listener) {
-        EasyEatRequest request = new EasyEatRequest(method, url, listener);
-
-        RequestQueue queue = RequestManager.getRequestQueue();
-        Log.d(Config.TAG, "cache key: " + request.getCacheKey());
-        Log.d(Config.TAG, "request info" + request.getUrl());
-        queue.add(request);
+        backgroundRequest(method, url, null, null, listener);
     }
 
-    public static void backgroundRequest(int method, String url, JSONObject jsonObject, Map<String, String> params,
+    public static void backgroundRequest(int method, String url, Map<String, String> params,
+                                         EasyEatResponseListener<JSONObject> listener) {
+        backgroundRequest(method, url, null, params, listener);
+    }
+
+    public static void backgroundRequest(int method, String url, JSONObject jsonObject,
+                                         Map<String, String> params,
                                          EasyEatResponseListener<JSONObject> listener) {
         EasyEatRequest request = new EasyEatRequest(method, url, jsonObject, listener);
         request.setParams(params);

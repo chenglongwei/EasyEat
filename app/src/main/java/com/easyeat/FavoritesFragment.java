@@ -69,7 +69,11 @@ public class FavoritesFragment extends Fragment implements AdapterView.OnItemCli
                 backgroundLoadFavorites();
             }
         });
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
         backgroundLoadFavorites();
     }
 

@@ -58,7 +58,7 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
     private void backgroundSaveProfile() {
         ProgressDialog dialog = ProgressDialog.show(this, "Updating profile", "Please wait ...");
         RequestManager.backgroundRequest(Request.Method.POST, Config.HTTP_POST_UPDATE_PROFILE,
-                null, new BaseResponseListener(this, dialog) {
+                null, null, new BaseResponseListener(this, dialog) {
                     @Override
                     public void onSuccessResponse(JSONObject response) {
                         showToast(response.optString(Config.key_message), Toast.LENGTH_SHORT);

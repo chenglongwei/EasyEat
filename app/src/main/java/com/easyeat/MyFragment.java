@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.easyeat.ui.ForwardLayout;
+import com.easyeat.util.Log;
 
 /**
  * Created by chenglongwei on 11/22/16.
@@ -21,6 +22,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout rl_food_order;
     private RelativeLayout rl_reservation;
     private RelativeLayout rl_about_us;
+
+    private ForwardLayout fl_account;
 
     public MyFragment() {
     }
@@ -44,8 +47,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private void initView() {
         //My Account
         rl_my_account.setOnClickListener(this);
-        ForwardLayout layout = ForwardLayout.single(rl_my_account, getString(R.string.my_account));
-        layout.setValue(getAccountStatus());
+        fl_account = ForwardLayout.single(rl_my_account, getString(R.string.my_account));
 
         // Food Order
         rl_food_order.setOnClickListener(this);
@@ -59,10 +61,22 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("update account status");
+        fl_account.setValue(getAccountStatus());
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_my_account:
-                Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                Intent intent;
+                if (EasyEatApplication.isLogin()) {
+                    intent = new Intent(getActivity(), ProfileActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), SignInActivity.class);
+                }
                 getActivity().startActivity(intent);
                 break;
             case R.id.rl_food_order:
