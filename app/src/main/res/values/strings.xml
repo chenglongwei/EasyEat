@@ -33,4 +33,7 @@
     <string name="title_activity_register">Register</string>
     <string name="action_register">register</string>
     <string name="sign_in_hint">Already a member? Sign in here.</string>
+    <string name="prompt_phone">Phone (optional)</string>
+    <string name="action_save">save</string>
+    <string name="title_activity_profile">My profile</string>
 </resources>

@@ -62,7 +62,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_my_account:
-                Intent intent = new Intent(getActivity(), SignInActivity.class);
+                Intent intent = new Intent(getActivity(), ProfileActivity.class);
                 getActivity().startActivity(intent);
                 break;
             case R.id.rl_food_order:

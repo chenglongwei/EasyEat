@@ -26,6 +26,7 @@ public class Config {
     // URL
     public static final String HTTP_GET_RESTAURANT = HOST + "/restaurant";
     public static final String HTTP_GET_FAVORITES_RESTAURANT = HOST + "/restaurant/favorites";
+    public static final String HTTP_POST_UPDATE_PROFILE = HOST + "/user/update/profile";
 
     public static final String salt = "7i6UbiQXBRffBpmn%&V$(b9s_GXA(4KU";
 }

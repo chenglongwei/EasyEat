@@ -84,8 +84,11 @@ public class EasyEatRequest extends JsonObjectRequest {
     }
 
     public void setParams(Map<String, String> params) {
-        this.params = params;
+        if (params != null && params.size() != 0) {
+            return;
+        }
 
+        this.params = params;
         //更新url
         StringBuilder sbURL;
         int idx = url.indexOf("?");

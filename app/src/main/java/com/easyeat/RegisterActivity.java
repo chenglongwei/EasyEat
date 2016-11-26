@@ -15,6 +15,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
     private EditText et_email;
     private EditText et_password;
     private EditText et_username;
+    private EditText et_phone;
     private EditText et_address;
     private Button bt_register;
     private TextView tv_sign_in;
@@ -28,6 +29,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
         et_email = (EditText) findViewById(R.id.et_email);
         et_password = (EditText) findViewById(R.id.et_password);
         et_username = (EditText) findViewById(R.id.et_username);
+        et_phone = (EditText) findViewById(R.id.et_phone);
         et_address = (EditText) findViewById(R.id.et_address);
 
         bt_register = (Button) findViewById(R.id.bt_register);

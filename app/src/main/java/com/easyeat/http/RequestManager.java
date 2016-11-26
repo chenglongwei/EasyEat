@@ -49,7 +49,6 @@ public class RequestManager {
     public static void backgroundRequest(int method, String url, Map<String, String> params,
                                          EasyEatResponseListener<JSONObject> listener) {
         EasyEatRequest request = new EasyEatRequest(method, url, listener);
-        request.setParams(params);
 
         RequestQueue queue = RequestManager.getRequestQueue();
         Log.d(Config.TAG, "cache key: " + request.getCacheKey());
