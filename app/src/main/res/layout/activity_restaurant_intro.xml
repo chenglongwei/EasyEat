@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/rl_restaurant_info"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_restaurant_height"
+                android:background="@color/white"
+                android:padding="@dimen/margin_small">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ding Tai Feng"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_medium"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/iv_favorite"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/icon_not_favor" />
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_name"
+                    android:layout_marginTop="@dimen/margin_tiny"
+                    android:text="2855 Stevens Creek Blvd, West San Jose"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_small" />
+
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_address"
+                    android:text="Taiwanese, Dim Sum, Shanghainese"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/font_small" />
+
+                <TextView
+                    android:id="@+id/tv_open_hours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_description"
+                    android:text="Open hours: 10:00~11:00"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/font_small" />
+
+                <TextView
+                    android:id="@+id/tv_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@id/tv_address"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/font_small" />
+            </RelativeLayout>
+
+            <!--direction-->
+            <include
+                android:id="@+id/rl_direction"
+                layout="@layout/layout_forward"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bt_height"
+                android:layout_below="@id/rl_restaurant_info"
+                android:layout_marginTop="@dimen/margin_small" />
+
+            <!--phone-->
+            <include
+                android:id="@+id/rl_phone"
+                layout="@layout/layout_forward"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bt_height"
+                android:layout_below="@+id/rl_direction" />
+
+            <!--Reservations-->
+            <include
+                android:id="@+id/rl_reservation"
+                layout="@layout/layout_forward"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bt_height"
+                android:layout_below="@+id/rl_phone"
+                android:layout_marginTop="@dimen/margin_small" />
+
+            <!--take out-->
+            <include
+                android:id="@+id/rl_take_out"
+                layout="@layout/layout_forward"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bt_height"
+                android:layout_below="@+id/rl_reservation" />
+
+            <!--find table-->
+            <include
+                android:id="@+id/rl_find_table"
+                layout="@layout/layout_forward"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bt_height"
+                android:layout_below="@+id/rl_take_out" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

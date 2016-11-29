@@ -115,9 +115,9 @@ public class RestaurantsFragment extends Fragment implements AdapterView.OnItemC
     }
 
     private void gotoRestaurantIntroActivity(Restaurant restaurant) {
-        Intent intent = new Intent(getContext(), RestaurantIntroActivity.class);
+        Intent intent = new Intent(getActivity(), RestaurantIntroActivity.class);
         intent.putExtra(Config.key_restaurant, restaurant);
-        getContext().startActivity(intent);
+        getActivity().startActivity(intent);
     }
 
     public void submitQuery(String query) {
