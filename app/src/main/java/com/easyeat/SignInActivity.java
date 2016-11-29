@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class SignInActivity extends BaseActivity implements OnClickListener {
     // UI references.
-    private EditText et_email;
+    private EditText et_username;
     private EditText et_password;
     private Button bt_sign_in;
     private TextView tv_register;
@@ -20,10 +20,10 @@ public class SignInActivity extends BaseActivity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_sign_in);
 
         // Set up the login form.
-        et_email = (EditText) findViewById(R.id.et_email);
+        et_username = (EditText) findViewById(R.id.et_username);
         et_password = (EditText) findViewById(R.id.et_password);
 
         bt_sign_in = (Button) findViewById(R.id.bt_sign_in);
@@ -54,11 +54,11 @@ public class SignInActivity extends BaseActivity implements OnClickListener {
      */
     private void attemptLogin() {
         // Reset errors.
-        et_email.setError(null);
+        et_username.setError(null);
         et_password.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = et_email.getText().toString();
+        String email = et_username.getText().toString();
         String password = et_password.getText().toString();
 
         boolean cancel = false;
@@ -71,14 +71,10 @@ public class SignInActivity extends BaseActivity implements OnClickListener {
             cancel = true;
         }
 
-        // Check for a valid email address.
+        // Check for a valid user name.
         if (TextUtils.isEmpty(email)) {
-            et_email.setError(getString(R.string.error_field_required));
-            focusView = et_email;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            et_email.setError(getString(R.string.error_invalid_email));
-            focusView = et_email;
+            et_username.setError(getString(R.string.error_field_required));
+            focusView = et_username;
             cancel = true;
         }
 

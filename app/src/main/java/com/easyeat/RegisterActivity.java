@@ -26,9 +26,9 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
         setContentView(R.layout.activity_register);
 
         // Set up the login form.
+        et_username = (EditText) findViewById(R.id.et_username);
         et_email = (EditText) findViewById(R.id.et_email);
         et_password = (EditText) findViewById(R.id.et_password);
-        et_username = (EditText) findViewById(R.id.et_username);
         et_phone = (EditText) findViewById(R.id.et_phone);
         et_address = (EditText) findViewById(R.id.et_address);
 
@@ -64,6 +64,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
         et_password.setError(null);
 
         // Store values at the time of the login attempt.
+        String name = et_username.getText().toString();
         String email = et_email.getText().toString();
         String password = et_password.getText().toString();
 
@@ -85,6 +86,13 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
         } else if (!isEmailValid(email)) {
             et_email.setError(getString(R.string.error_invalid_email));
             focusView = et_email;
+            cancel = true;
+        }
+
+        // Check for name.
+        if (TextUtils.isEmpty(name)) {
+            et_username.setError(getString(R.string.error_field_required));
+            focusView = et_username;
             cancel = true;
         }
 

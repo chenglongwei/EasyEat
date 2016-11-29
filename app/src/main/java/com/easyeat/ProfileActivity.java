@@ -18,8 +18,8 @@ import org.json.JSONObject;
 
 public class ProfileActivity extends BaseActivity implements OnClickListener {
     // UI references.
-    private EditText et_email;
     private EditText et_username;
+    private EditText et_email;
     private EditText et_phone;
     private EditText et_address;
     private Button bt_save;
