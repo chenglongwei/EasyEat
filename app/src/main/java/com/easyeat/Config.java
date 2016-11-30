@@ -7,9 +7,11 @@ package com.easyeat;
 public class Config {
     public static final String TAG = "EasyEat";
     private static final String HOST = "https://private-ec7ca6-cmpe295.apiary-mock.com";
+    private static final String AUTH_HOST = "http://35.163.147.127:8080";
 
     public static final String key_session_id = "session_id";
     public static final String key_user_id = "user_id";
+    public static final String key_user = "user";
     public static final String key_latitude = "latitude";
     public static final String key_longtitude= "longtitude";
     public static final String key_restaurant = "restaurant";
@@ -18,6 +20,7 @@ public class Config {
     public static final String OK = "OK";
     public static final String key_data = "data";
     public static final String key_query = "query";
+    public static final String key_accessToken = "accessToken";
 
     // position information
     public static double latitude = 0.0;
@@ -27,6 +30,9 @@ public class Config {
     public static final String HTTP_GET_RESTAURANT = HOST + "/restaurant";
     public static final String HTTP_GET_FAVORITES_RESTAURANT = HOST + "/restaurant/favorites";
     public static final String HTTP_POST_UPDATE_PROFILE = HOST + "/user/update/profile";
+
+    public static final String HTTP_POST_REGISTER = AUTH_HOST + "/user/register";
+    public static final String HTTP_POST_SIGN_IN = AUTH_HOST + "/user/login";
 
     public static final String salt = "7i6UbiQXBRffBpmn%&V$(b9s_GXA(4KU";
 }

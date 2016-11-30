@@ -1,5 +1,6 @@
 package com.easyeat;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,6 +9,16 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.easyeat.bean.User;
+import com.easyeat.http.BaseResponseListener;
+import com.easyeat.http.EasyEatRequest;
+import com.easyeat.http.RequestManager;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
 
 
 public class RegisterActivity extends BaseActivity implements OnClickListener {
@@ -108,7 +119,40 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
     }
 
     private void backgroundRegister() {
+        String name = et_username.getText().toString();
+        String email = et_email.getText().toString();
+        String password = et_password.getText().toString();
+        String address = et_address.getText().toString();
+        String phone = et_phone.getText().toString();
 
+        JSONObject body = new JSONObject();
+        try {
+            body.put("username", name);
+            body.put("email", email);
+            body.put("password", getMd5Password(password));
+            body.put("address", address);
+            body.put("phone", phone);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        ProgressDialog dialog = ProgressDialog.show(this, "Registering. ..", "Please wait ...");
+        RequestManager.backgroundRequest(Request.Method.POST, Config.HTTP_POST_REGISTER, body, null,
+                new BaseResponseListener(this, dialog) {
+                    @Override
+                    public void onSuccessResponse(JSONObject response) {
+                        JSONObject dataJson = response.optJSONObject(Config.key_data);
+                        JSONObject userJson = dataJson.optJSONObject(Config.key_user);
+                        User user = new Gson().fromJson(userJson.toString(), User.class);
+                        EasyEatApplication.setCurrentUser(user);
+
+                        String token = dataJson.optString(Config.key_accessToken);
+                        EasyEatApplication.setSessionId(token);
+
+                        showToast("Register successfully!", Toast.LENGTH_SHORT);
+                        finish();
+                    }
+                });
     }
 
     private boolean isEmailValid(String email) {

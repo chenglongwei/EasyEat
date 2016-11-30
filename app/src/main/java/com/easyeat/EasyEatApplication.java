@@ -70,7 +70,7 @@ public class EasyEatApplication extends Application {
     public static boolean isLogin() {
         try {
             User user = getCurrentUser();
-            if (user != null && user.user_id > 0) {
+            if (user != null && user.userId >= 0) {
                 return true;
             }
             return false;

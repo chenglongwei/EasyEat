@@ -93,6 +93,6 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             return "Not login";
         }
 
-        return EasyEatApplication.getCurrentUser().user_name;
+        return EasyEatApplication.getCurrentUser().username;
     }
 }

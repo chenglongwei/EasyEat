@@ -1,5 +1,6 @@
 package com.easyeat;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,6 +9,15 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.easyeat.bean.User;
+import com.easyeat.http.BaseResponseListener;
+import com.easyeat.http.RequestManager;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
 
 
 public class SignInActivity extends BaseActivity implements OnClickListener {
@@ -90,11 +100,34 @@ public class SignInActivity extends BaseActivity implements OnClickListener {
     }
 
     private void backgroundLogin() {
+        String name = et_username.getText().toString();
+        String password = et_password.getText().toString();
 
-    }
+        JSONObject body = new JSONObject();
+        try {
+            body.put("username", name);
+            body.put("password", getMd5Password(password));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-    private boolean isEmailValid(String email) {
-        return email.contains("@");
+        ProgressDialog dialog = ProgressDialog.show(this, "Registering. ..", "Please wait ...");
+        RequestManager.backgroundRequest(Request.Method.POST, Config.HTTP_POST_SIGN_IN, body, null,
+                new BaseResponseListener(this, dialog) {
+                    @Override
+                    public void onSuccessResponse(JSONObject response) {
+                        JSONObject dataJson = response.optJSONObject(Config.key_data);
+                        JSONObject userJson = dataJson.optJSONObject(Config.key_user);
+                        User user = new Gson().fromJson(userJson.toString(), User.class);
+                        EasyEatApplication.setCurrentUser(user);
+
+                        String token = dataJson.optString(Config.key_accessToken);
+                        EasyEatApplication.setSessionId(token);
+
+                        showToast("Sign in successfully!", Toast.LENGTH_SHORT);
+                        finish();
+                    }
+                });
     }
 
     private boolean isPasswordValid(String password) {

@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.easyeat.bean.User;
 import com.easyeat.http.BaseResponseListener;
 import com.easyeat.http.RequestManager;
 
@@ -42,8 +43,11 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
     }
 
     private void initData() {
-        et_email.setText("weichenglong@gmail.com");
+        User user = EasyEatApplication.getCurrentUser();
+        et_email.setText(user.email);
         et_email.setEnabled(false);
+        et_username.setText(user.username);
+        et_username.setEnabled(false);
     }
 
     @Override

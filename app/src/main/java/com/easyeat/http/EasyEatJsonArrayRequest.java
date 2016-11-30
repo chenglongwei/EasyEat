@@ -32,7 +32,7 @@ public class EasyEatJsonArrayRequest extends JsonArrayRequest {
         Map<String, String> map = new HashMap<>();
         map.putAll(super.getHeaders());
         User user = EasyEatApplication.getCurrentUser();
-        long userId = (user == null) ? -1 : user.user_id;
+        long userId = (user == null) ? -1 : user.userId;
         map.put(Config.key_user_id, String.valueOf(userId));
         map.put(Config.key_session_id, EasyEatApplication.getSessionId());
         return map;
