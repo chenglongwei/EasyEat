@@ -13,7 +13,7 @@ public class Config {
     public static final String key_user_id = "user_id";
     public static final String key_user = "user";
     public static final String key_latitude = "latitude";
-    public static final String key_longtitude= "longtitude";
+    public static final String key_longtitude = "longtitude";
     public static final String key_restaurant = "restaurant";
     public static final String key_message = "message";
     public static final String key_status = "status";
@@ -29,10 +29,10 @@ public class Config {
     // URL
     public static final String HTTP_GET_RESTAURANT = HOST + "/restaurant";
     public static final String HTTP_GET_FAVORITES_RESTAURANT = HOST + "/restaurant/favorites";
-    public static final String HTTP_POST_UPDATE_PROFILE = HOST + "/user/update/profile";
 
     public static final String HTTP_POST_REGISTER = AUTH_HOST + "/user/register";
     public static final String HTTP_POST_SIGN_IN = AUTH_HOST + "/user/login";
+    public static final String HTTP_POST_UPDATE_PROFILE = AUTH_HOST + "/user";
 
     public static final String salt = "7i6UbiQXBRffBpmn%&V$(b9s_GXA(4KU";
 }

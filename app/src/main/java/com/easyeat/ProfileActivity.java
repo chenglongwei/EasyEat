@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +14,7 @@ import com.easyeat.bean.User;
 import com.easyeat.http.BaseResponseListener;
 import com.easyeat.http.RequestManager;
 import com.easyeat.util.SharedPrefsUtil;
+import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
@@ -27,6 +27,8 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
     private EditText et_address;
     private Button bt_save;
     private TextView tv_logout;
+
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +50,14 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
     }
 
     private void initData() {
-        User user = EasyEatApplication.getCurrentUser();
+        user = EasyEatApplication.getCurrentUser();
         et_email.setText(user.email);
         et_email.setEnabled(false);
         et_username.setText(user.username);
         et_username.setEnabled(false);
+
+        et_address.setText(user.address);
+        et_phone.setText(user.phonenumber);
     }
 
     @Override
@@ -73,12 +78,28 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
     }
 
     private void backgroundSaveProfile() {
+        String address = et_address.getText().toString();
+        String phone = et_phone.getText().toString();
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("address", address);
+            body.put("phonenumber", phone);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         ProgressDialog dialog = ProgressDialog.show(this, "Updating profile", "Please wait ...");
-        RequestManager.backgroundRequest(Request.Method.POST, Config.HTTP_POST_UPDATE_PROFILE,
-                null, null, new BaseResponseListener(this, dialog) {
+        RequestManager.backgroundRequest(Request.Method.PUT, Config.HTTP_POST_UPDATE_PROFILE + "/" + user.userId,
+                body, null, new BaseResponseListener(this, dialog) {
                     @Override
                     public void onSuccessResponse(JSONObject response) {
-                        showToast(response.optString(Config.key_message), Toast.LENGTH_SHORT);
+                        JSONObject dataJson = response.optJSONObject(Config.key_data);
+                        JSONObject userJson = dataJson.optJSONObject(Config.key_user);
+                        User user = new Gson().fromJson(userJson.toString(), User.class);
+                        EasyEatApplication.setCurrentUser(user);
+
+                        showToast("Update profile successfully!", Toast.LENGTH_SHORT);
                     }
                 });
     }
