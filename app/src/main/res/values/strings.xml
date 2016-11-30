@@ -40,4 +40,5 @@
     <string name="phone">Phone</string>
     <string name="take_out">Take out order</string>
     <string name="find_table">Find a table</string>
+    <string name="logout_hint">Logout? Here</string>
 </resources>

@@ -73,8 +73,9 @@ public class EasyEatRequest extends JsonObjectRequest {
         map.putAll(super.getHeaders());
         User user = EasyEatApplication.getCurrentUser();
         long userId = (user == null) ? -1 : user.userId;
+        map.put("Authorization", "Bearer " + EasyEatApplication.getSessionId());
         map.put(Config.key_user_id, String.valueOf(userId));
-        map.put(Config.key_session_id, EasyEatApplication.getSessionId());
+        map.put(Config.key_accessToken, EasyEatApplication.getSessionId());
         return map;
     }
 

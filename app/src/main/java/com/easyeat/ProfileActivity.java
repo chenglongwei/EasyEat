@@ -7,12 +7,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.easyeat.bean.User;
 import com.easyeat.http.BaseResponseListener;
 import com.easyeat.http.RequestManager;
+import com.easyeat.util.SharedPrefsUtil;
 
 import org.json.JSONObject;
 
@@ -24,6 +26,7 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
     private EditText et_phone;
     private EditText et_address;
     private Button bt_save;
+    private TextView tv_logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,8 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
         bt_save = (Button) findViewById(R.id.bt_save);
         bt_save.setOnClickListener(this);
 
+        tv_logout = (TextView) findViewById(R.id.tv_logout);
+        tv_logout.setOnClickListener(this);
         initData();
     }
 
@@ -55,6 +60,14 @@ public class ProfileActivity extends BaseActivity implements OnClickListener {
         switch (view.getId()) {
             case R.id.bt_save:
                 backgroundSaveProfile();
+                break;
+            case R.id.tv_logout:
+                //清空存储的数据
+                SharedPrefsUtil.deleteUser();
+                //设置变量为空
+                EasyEatApplication.setCurrentUser(null);
+                EasyEatApplication.setSessionId(null);
+                finish();
                 break;
         }
     }
