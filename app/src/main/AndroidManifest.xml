@@ -41,7 +41,8 @@
         <activity
             android:name=".ProfileActivity"
             android:label="@string/title_activity_profile" />
-        <activity android:name=".MenuActivity"></activity>
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".ReservationActivity"></activity>
     </application>
 
 </manifest>

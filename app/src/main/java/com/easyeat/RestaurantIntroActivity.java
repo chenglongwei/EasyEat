@@ -109,6 +109,7 @@ public class RestaurantIntroActivity extends BaseActivity implements View.OnClic
                 openPhoneDial();
                 break;
             case R.id.rl_reservation:
+                gotoReservationActivity();
                 break;
             case R.id.rl_take_out:
                 break;
@@ -116,6 +117,17 @@ public class RestaurantIntroActivity extends BaseActivity implements View.OnClic
                 gotoMenuActivity();
                 break;
         }
+    }
+
+    private void gotoReservationActivity() {
+        if (restaurant.slots == null || restaurant.slots.length == 0) {
+            showToast("The restaurant has no time slots to reserve", Toast.LENGTH_SHORT);
+            return;
+        }
+
+        Intent intent = new Intent(this, ReservationActivity.class);
+        intent.putExtra(Config.key_slots, restaurant.slots);
+        startActivity(intent);
     }
 
     private void gotoMenuActivity() {
