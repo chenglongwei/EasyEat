@@ -37,7 +37,7 @@ public class RestaurantIntroActivity extends BaseActivity implements View.OnClic
 
     private RelativeLayout rl_reservation;
     private RelativeLayout rl_take_out;
-    private RelativeLayout rl_find_table;
+    private RelativeLayout rl_review_menu;
 
     private Restaurant restaurant;
 
@@ -65,7 +65,7 @@ public class RestaurantIntroActivity extends BaseActivity implements View.OnClic
 
         rl_reservation = (RelativeLayout) findViewById(R.id.rl_reservation);
         rl_take_out = (RelativeLayout) findViewById(R.id.rl_take_out);
-        rl_find_table = (RelativeLayout) findViewById(R.id.rl_find_table);
+        rl_review_menu = (RelativeLayout) findViewById(R.id.rl_review_menu);
 
         initData();
     }
@@ -91,8 +91,8 @@ public class RestaurantIntroActivity extends BaseActivity implements View.OnClic
         rl_reservation.setOnClickListener(this);
         ForwardLayout.mid(rl_take_out, getString(R.string.take_out));
         rl_take_out.setOnClickListener(this);
-        ForwardLayout.bottom(rl_find_table, getString(R.string.find_table));
-        rl_find_table.setOnClickListener(this);
+        ForwardLayout.bottom(rl_review_menu, getString(R.string.review_menu));
+        rl_review_menu.setOnClickListener(this);
     }
 
     @Override
@@ -112,9 +112,21 @@ public class RestaurantIntroActivity extends BaseActivity implements View.OnClic
                 break;
             case R.id.rl_take_out:
                 break;
-            case R.id.rl_find_table:
+            case R.id.rl_review_menu:
+                gotoMenuActivity();
                 break;
         }
+    }
+
+    private void gotoMenuActivity() {
+        if (restaurant.menu == null || restaurant.menu.length == 0) {
+            showToast("The restaurant has not uploaded menu yet", Toast.LENGTH_SHORT);
+            return;
+        }
+
+        Intent intent = new Intent(this, MenuActivity.class);
+        intent.putExtra(Config.key_menu, restaurant.menu);
+        startActivity(intent);
     }
 
     private void handleFavorite() {

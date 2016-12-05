@@ -16,4 +16,6 @@ public class Restaurant implements Serializable {
     public String opentime;
     public String phonenumber;
     public boolean isfavorite;
+    public Menu[] menu;
+    public String[] slots;
 }

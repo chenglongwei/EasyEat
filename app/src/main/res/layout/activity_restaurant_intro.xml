@@ -107,9 +107,9 @@
                 android:layout_height="@dimen/bt_height"
                 android:layout_below="@+id/rl_reservation" />
 
-            <!--find table-->
+            <!--review menu-->
             <include
-                android:id="@+id/rl_find_table"
+                android:id="@+id/rl_review_menu"
                 layout="@layout/layout_forward"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/bt_height"
