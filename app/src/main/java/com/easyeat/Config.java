@@ -28,11 +28,11 @@ public class Config {
 
     // URL
     public static final String HTTP_GET_RESTAURANT = HOST + "/restaurant";
-    public static final String HTTP_GET_FAVORITES_RESTAURANT = HOST + "/restaurant/favorites";
+    public static final String HTTP_GET_FAVORITES_RESTAURANT = HOST + "/favorite";
 
     public static final String HTTP_POST_REGISTER = AUTH_HOST + "/user/register";
     public static final String HTTP_POST_SIGN_IN = AUTH_HOST + "/user/login";
-    public static final String HTTP_POST_UPDATE_PROFILE = AUTH_HOST + "/user";
+    public static final String HTTP_POST_UPDATE_PROFILE = AUTH_HOST + "/user/userid";
 
     public static final String salt = "7i6UbiQXBRffBpmn%&V$(b9s_GXA(4KU";
 }

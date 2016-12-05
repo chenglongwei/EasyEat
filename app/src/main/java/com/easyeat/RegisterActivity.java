@@ -136,7 +136,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
             e.printStackTrace();
         }
 
-        ProgressDialog dialog = ProgressDialog.show(this, "Registering. ..", "Please wait ...");
+        ProgressDialog dialog = ProgressDialog.show(this, "Registering...", "Please wait ...");
         RequestManager.backgroundRequest(Request.Method.POST, Config.HTTP_POST_REGISTER, body, null,
                 new BaseResponseListener(this, dialog) {
                     @Override

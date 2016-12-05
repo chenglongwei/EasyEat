@@ -1,28 +1,35 @@
 package com.easyeat;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.easyeat.bean.Restaurant;
+import com.easyeat.http.BaseResponseListener;
+import com.easyeat.http.RequestManager;
 import com.easyeat.ui.ForwardLayout;
+
+import org.json.JSONObject;
 
 /**
  * Created by chenglongwei on 11/23/16.
  */
 
-public class RestaurantIntroActivity extends AppCompatActivity implements View.OnClickListener {
+public class RestaurantIntroActivity extends BaseActivity implements View.OnClickListener {
     private TextView tv_name;
     private TextView tv_address;
     private TextView tv_description;
     private TextView tv_distance;
     private TextView tv_open_hours;
+    private ImageView iv_favorite;
 
     // actions
     private RelativeLayout rl_direction;
@@ -51,6 +58,7 @@ public class RestaurantIntroActivity extends AppCompatActivity implements View.O
         tv_description = (TextView) findViewById(R.id.tv_description);
         tv_distance = (TextView) findViewById(R.id.tv_distance);
         tv_open_hours = (TextView) findViewById(R.id.tv_open_hours);
+        iv_favorite = (ImageView) findViewById(R.id.iv_favorite);
 
         rl_direction = (RelativeLayout) findViewById(R.id.rl_direction);
         rl_phone = (RelativeLayout) findViewById(R.id.rl_phone);
@@ -68,6 +76,10 @@ public class RestaurantIntroActivity extends AppCompatActivity implements View.O
         tv_description.setText(restaurant.description);
         tv_distance.setText(restaurant.distance);
         tv_open_hours.setText("Open hours: " + restaurant.opentime);
+
+        iv_favorite.setImageResource(restaurant.isfavorite ? R.drawable.ic_favor :
+                R.drawable.ic_not_favor);
+        iv_favorite.setOnClickListener(this);
 
         ForwardLayout.top(rl_direction, getString(R.string.direction));
         rl_direction.setOnClickListener(this);
@@ -87,6 +99,9 @@ public class RestaurantIntroActivity extends AppCompatActivity implements View.O
     public void onClick(View view) {
 
         switch (view.getId()) {
+            case R.id.iv_favorite:
+                handleFavorite();
+                break;
             case R.id.rl_direction:
                 openGoogleMaps();
                 break;
@@ -100,6 +115,34 @@ public class RestaurantIntroActivity extends AppCompatActivity implements View.O
             case R.id.rl_find_table:
                 break;
         }
+    }
+
+    private void handleFavorite() {
+        if (!EasyEatApplication.isLogin()) {
+            Intent intent = new Intent(this, SignInActivity.class);
+            startActivity(intent);
+            return;
+        }
+
+        backgroundChangeFavorite();
+    }
+
+    private void backgroundChangeFavorite() {
+        final String title = restaurant.isfavorite ? "Removing from favorites" : "Adding to favorites";
+        int method = restaurant.isfavorite ? Request.Method.DELETE : Request.Method.POST;
+        String url = Config.HTTP_GET_FAVORITES_RESTAURANT + "/" + restaurant.id;
+
+        ProgressDialog dialog = ProgressDialog.show(this, title, "Please wait ...");
+        RequestManager.backgroundRequest(method, url, null, null,
+                new BaseResponseListener(this, dialog) {
+                    @Override
+                    public void onSuccessResponse(JSONObject response) {
+                        showToast(title + " successfully!", Toast.LENGTH_SHORT);
+                        restaurant.isfavorite = !restaurant.isfavorite;
+                        iv_favorite.setImageResource(restaurant.isfavorite ? R.drawable.ic_favor :
+                                R.drawable.ic_not_favor);
+                    }
+                });
     }
 
     private void openGoogleMaps() {
