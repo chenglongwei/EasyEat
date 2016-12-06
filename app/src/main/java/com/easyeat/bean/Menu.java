@@ -13,4 +13,5 @@ public class Menu implements Serializable {
     public String image;
     public double price;
     public String status;
+    public int count;
 }

@@ -112,11 +112,29 @@ public class RestaurantIntroActivity extends BaseActivity implements View.OnClic
                 gotoReservationActivity();
                 break;
             case R.id.rl_take_out:
+                gotoTakeOutActivity();
                 break;
             case R.id.rl_review_menu:
                 gotoMenuActivity();
                 break;
         }
+    }
+
+    private void gotoTakeOutActivity() {
+        if (!EasyEatApplication.isLogin()) {
+            Intent intent = new Intent(this, SignInActivity.class);
+            startActivity(intent);
+            return;
+        }
+
+        if (restaurant.slots == null || restaurant.slots.length == 0) {
+            showToast("The restaurant has no time slots to order", Toast.LENGTH_SHORT);
+            return;
+        }
+
+        Intent intent = new Intent(this, TakeOutActivity.class);
+        intent.putExtra(Config.key_restaurant, restaurant);
+        startActivity(intent);
     }
 
     private void gotoReservationActivity() {

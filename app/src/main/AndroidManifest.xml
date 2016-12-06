@@ -42,7 +42,8 @@
             android:name=".ProfileActivity"
             android:label="@string/title_activity_profile" />
         <activity android:name=".MenuActivity" />
-        <activity android:name=".ReservationActivity"></activity>
+        <activity android:name=".ReservationActivity" />
+        <activity android:name=".TakeOutActivity" />
     </application>
 
 </manifest>

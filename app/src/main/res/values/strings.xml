@@ -40,4 +40,5 @@
     <string name="logout_hint">Logout? Here</string>
     <string name="prompt_private">Private table</string>
     <string name="action_reserve">Reserve</string>
+    <string name="action_order">Order</string>
 </resources>
