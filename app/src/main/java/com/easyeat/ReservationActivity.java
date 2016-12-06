@@ -10,16 +10,11 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.easyeat.bean.Restaurant;
-import com.easyeat.bean.User;
 import com.easyeat.http.BaseResponseListener;
 import com.easyeat.http.RequestManager;
-import com.google.gson.Gson;
+import com.easyeat.util.Util;
 
 import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class ReservationActivity extends BaseActivity implements View.OnClickListener {
     private NumberPicker np_people;
@@ -67,7 +62,7 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         int maxDay = 14;
         String[] date = new String[maxDay];
         for (int i = 0; i < maxDay; i++) {
-            date[i] = getCalculatedDate("MM-dd-yyyy", i);
+            date[i] = Util.getCalculatedDate("MM-dd-yyyy", i);
         }
         np_date.setMinValue(0);
         np_date.setMaxValue(date.length - 1);
@@ -81,21 +76,6 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         np_people.setWrapSelectorWheel(true);
     }
 
-    /**
-     * Pass your date format and no of days for minus from current
-     * If you want to get previous date then pass days with minus sign
-     * else you can pass as it is for next date
-     *
-     * @param dateFormat
-     * @param days
-     * @return Calculated Date
-     */
-    public static String getCalculatedDate(String dateFormat, int days) {
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat s = new SimpleDateFormat(dateFormat);
-        cal.add(Calendar.DAY_OF_YEAR, days);
-        return s.format(new Date(cal.getTimeInMillis()));
-    }
 
     @Override
     public void onClick(View view) {
@@ -112,7 +92,8 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         try {
             body.put("timeSlot", restaurant.slots[np_slots.getValue()]);
             body.put("isPrivate", cb_private.isChecked());
-            body.put("date", getCalculatedDate("MM-dd-yyyy", np_date.getValue()));
+            body.put("takeOut", false);
+            body.put("date", Util.getCalculatedDate("MM-dd-yyyy", np_date.getValue()));
             body.put("people", String.valueOf(np_people.getValue() + 1));
         } catch (Exception e) {
             e.printStackTrace();

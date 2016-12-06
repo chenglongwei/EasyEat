@@ -8,6 +8,7 @@ public class Config {
     public static final String TAG = "EasyEat";
     private static final String HOST = "https://private-ec7ca6-cmpe295.apiary-mock.com";
     private static final String AUTH_HOST = "http://35.163.147.127:8080";
+//    private static final String HOST = AUTH_HOST;
 
     public static final String key_session_id = "session_id";
     public static final String key_user_id = "user_id";
