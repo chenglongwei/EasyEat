@@ -3,6 +3,7 @@ package com.easyeat;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.NumberPicker;
@@ -71,8 +72,10 @@ public class TakeOutActivity extends BaseActivity implements View.OnClickListene
         // init listview
         adapter = new TakeOutAdapter(this, restaurant.menu);
         lv_menu.setAdapter(adapter);
-        lv_menu.setMinimumHeight(restaurant.menu.length *
-                getResources().getDimensionPixelSize(R.dimen.item_restaurant_height));
+
+        ViewGroup.LayoutParams params = lv_menu.getLayoutParams();
+        params.height = restaurant.menu.length *
+                getResources().getDimensionPixelSize(R.dimen.item_restaurant_height);
     }
 
 

@@ -6,45 +6,54 @@
     android:layout_height="match_parent"
     tools:context="com.easyeat.TakeOutActivity">
 
-    <LinearLayout
-        android:id="@+id/ll_picker"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_small">
+        android:layout_height="match_parent">
 
-        <NumberPicker
-            android:id="@+id/np_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_micro"
-            android:layout_weight="1" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <NumberPicker
-            android:id="@+id/np_slots"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_picker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_small">
 
-    <ListView
-        android:id="@+id/lv_menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ll_picker"
-        tools:listitem="@layout/item_take_out" />
+                <NumberPicker
+                    android:id="@+id/np_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_micro"
+                    android:layout_weight="1" />
 
+                <NumberPicker
+                    android:id="@+id/np_slots"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/bt_reserve"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/bt_height"
-        android:layout_below="@id/lv_menu"
-        android:layout_margin="@dimen/margin_small"
-        android:background="@drawable/selector_button"
-        android:text="@string/action_order"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+            <ListView
+                android:id="@+id/lv_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_picker"
+                tools:listitem="@layout/item_take_out" />
 
+            <Button
+                android:id="@+id/bt_reserve"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bt_height"
+                android:layout_below="@id/lv_menu"
+                android:layout_margin="@dimen/margin_small"
+                android:background="@drawable/selector_button"
+                android:text="@string/action_order"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
 
 

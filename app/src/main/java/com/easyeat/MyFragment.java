@@ -71,21 +71,30 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_my_account:
-                Intent intent;
-                if (EasyEatApplication.isLogin()) {
-                    intent = new Intent(getActivity(), ProfileActivity.class);
-                } else {
-                    intent = new Intent(getActivity(), SignInActivity.class);
-                }
-                getActivity().startActivity(intent);
+                gotoProfileActivity();
                 break;
             case R.id.rl_food_order:
                 break;
             case R.id.rl_reservation:
+                gotoMyReservationActivity();
                 break;
             case R.id.rl_about_us:
                 break;
         }
+    }
+
+    private void gotoMyReservationActivity() {
+
+    }
+
+    private void gotoProfileActivity() {
+        Intent intent;
+        if (EasyEatApplication.isLogin()) {
+            intent = new Intent(getActivity(), ProfileActivity.class);
+        } else {
+            intent = new Intent(getActivity(), SignInActivity.class);
+        }
+        getActivity().startActivity(intent);
     }
 
     public String getAccountStatus() {
