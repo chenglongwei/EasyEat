@@ -120,6 +120,12 @@ public class RestaurantIntroActivity extends BaseActivity implements View.OnClic
     }
 
     private void gotoReservationActivity() {
+        if (!EasyEatApplication.isLogin()) {
+            Intent intent = new Intent(this, SignInActivity.class);
+            startActivity(intent);
+            return;
+        }
+
         if (restaurant.slots == null || restaurant.slots.length == 0) {
             showToast("The restaurant has no time slots to reserve", Toast.LENGTH_SHORT);
             return;
