@@ -29,6 +29,7 @@ public class Config {
     // URL
     public static final String HTTP_GET_RESTAURANT = HOST + "/restaurant";
     public static final String HTTP_GET_FAVORITES_RESTAURANT = HOST + "/favorite";
+    public static final String HTTP_POST_TABLE_RESERVE = HOST + "/table/reserve";
 
     public static final String HTTP_POST_REGISTER = AUTH_HOST + "/user/register";
     public static final String HTTP_POST_SIGN_IN = AUTH_HOST + "/user/login";

@@ -126,7 +126,7 @@ public class RestaurantIntroActivity extends BaseActivity implements View.OnClic
         }
 
         Intent intent = new Intent(this, ReservationActivity.class);
-        intent.putExtra(Config.key_slots, restaurant.slots);
+        intent.putExtra(Config.key_restaurant, restaurant);
         startActivity(intent);
     }
 
