@@ -85,7 +85,7 @@ public class EasyEatRequest extends JsonObjectRequest {
     }
 
     public void setParams(Map<String, String> params) {
-        if (params == null || params.size() != 0) {
+        if (params == null || params.size() == 0) {
             return;
         }
 

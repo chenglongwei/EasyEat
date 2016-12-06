@@ -100,6 +100,11 @@ public class TakeOutActivity extends BaseActivity implements View.OnClickListene
             }
         }
 
+        if (menuArray.length() == 0) {
+            showToast("Please select order items!", Toast.LENGTH_SHORT);
+            return;
+        }
+
         JSONObject body = new JSONObject();
         try {
             body.put("timeSlot", restaurant.slots[np_slots.getValue()]);
