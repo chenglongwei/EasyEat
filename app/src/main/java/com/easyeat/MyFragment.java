@@ -1,5 +1,6 @@
 package com.easyeat;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,8 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.android.volley.Request;
+import com.easyeat.bean.ReservationInfo;
+import com.easyeat.http.BaseResponseListener;
+import com.easyeat.http.RequestManager;
 import com.easyeat.ui.ForwardLayout;
 import com.easyeat.util.Log;
+import com.easyeat.util.Util;
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * Created by chenglongwei on 11/22/16.
@@ -84,7 +94,30 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     }
 
     private void gotoMyReservationActivity() {
+        if (!EasyEatApplication.isLogin()) {
+            Intent intent = new Intent(getActivity(), SignInActivity.class);
+            startActivity(intent);
+            return;
+        }
 
+        ProgressDialog dialog = ProgressDialog.show(getActivity(), "Getting your reservation...",
+                "Please wait ...");
+        String start = Util.getCalculatedDate("yyyy-MM-dd", 0);
+        String end = Util.getCalculatedDate("yyyy-MM-dd", 14);
+        String url = Config.HTTP_GET_TABLE_RESERVE + "?start=" + start + "&end=" + end;
+        RequestManager.backgroundRequest(Request.Method.GET, url, null, null,
+                new BaseResponseListener((BaseActivity) getActivity(), dialog) {
+                    @Override
+                    public void onSuccessResponse(JSONObject response) {
+                        JSONArray dataJson = response.optJSONArray(Config.key_data);
+                        ReservationInfo[] reservationInfos =
+                                new Gson().fromJson(dataJson.toString(), ReservationInfo[].class);
+
+                        Intent intent = new Intent(getActivity(), MyReservationActivity.class);
+                        intent.putExtra(Config.key_reservations, reservationInfos);
+                        startActivity(intent);
+                    }
+                });
     }
 
     private void gotoProfileActivity() {
