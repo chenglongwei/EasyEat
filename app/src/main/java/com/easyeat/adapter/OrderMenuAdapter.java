@@ -73,7 +73,7 @@ public class OrderMenuAdapter extends BaseAdapter {
         holder.tv_name.setText(item.menu.name);
         holder.tv_description.setText(item.menu.description);
         holder.tv_price.setText("$" + String.valueOf(item.menu.price));
-        holder.tv_quality.setText(String.valueOf(item.quality));
+        holder.tv_quality.setText("Quality: " + item.quality);
         holder.networkImageView.setImageUrl(item.menu.image, RequestManager.getImageLoader());
     }
 
