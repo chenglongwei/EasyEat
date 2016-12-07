@@ -74,7 +74,7 @@ public class RestaurantAdapter extends BaseAdapter {
         holder.tv_name.setText(item.name);
         holder.tv_address.setText(item.address);
         holder.tv_description.setText(item.description);
-        holder.tv_distance.setText(item.distance);
+        holder.tv_distance.setText(item.formatDistance());
         holder.networkImageView.setImageUrl(item.url, RequestManager.getImageLoader());
     }
 

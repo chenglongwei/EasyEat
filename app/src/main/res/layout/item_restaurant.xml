@@ -9,21 +9,21 @@
         android:id="@+id/networkImageView"
         android:layout_width="@dimen/restaurant_picture_size"
         android:layout_height="@dimen/restaurant_picture_size"
-        android:layout_margin="@dimen/margin_small"/>
+        android:layout_margin="@dimen/margin_small" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/margin_small"
-        android:layout_toEndOf="@id/networkImageView">
+        android:layout_toEndOf="@id/networkImageView"
+        android:padding="@dimen/margin_small">
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:textColor="@color/black"
-            android:textSize="@dimen/font_medium" />
+            android:textSize="@dimen/font_medium"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_address"
@@ -31,6 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_name"
             android:layout_marginTop="@dimen/margin_tiny"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="@dimen/font_small" />
 
@@ -46,8 +48,8 @@
             android:id="@+id/tv_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_address"
             android:layout_alignParentRight="true"
+            android:layout_below="@id/tv_address"
             android:textColor="@color/grey"
             android:textSize="@dimen/font_small" />
     </RelativeLayout>

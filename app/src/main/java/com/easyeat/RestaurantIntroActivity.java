@@ -74,7 +74,7 @@ public class RestaurantIntroActivity extends BaseActivity implements View.OnClic
         tv_name.setText(restaurant.name);
         tv_address.setText(restaurant.address);
         tv_description.setText(restaurant.description);
-        tv_distance.setText(restaurant.distance);
+        tv_distance.setText(restaurant.formatDistance());
         tv_open_hours.setText("Open hours: " + restaurant.opentime);
 
         iv_favorite.setImageResource(restaurant.isfavorite ? R.drawable.ic_favor :
