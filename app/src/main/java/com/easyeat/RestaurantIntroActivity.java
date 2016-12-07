@@ -132,6 +132,11 @@ public class RestaurantIntroActivity extends BaseActivity implements View.OnClic
             return;
         }
 
+        if (restaurant.menu == null || restaurant.menu.length == 0) {
+            showToast("The restaurant has not uploaded menu yet", Toast.LENGTH_SHORT);
+            return;
+        }
+
         Intent intent = new Intent(this, TakeOutActivity.class);
         intent.putExtra(Config.key_restaurant, restaurant);
         startActivity(intent);

@@ -23,6 +23,7 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,6 +79,12 @@ public class FavoritesFragment extends Fragment implements AdapterView.OnItemCli
     }
 
     private void backgroundLoadFavorites() {
+        if (!EasyEatApplication.isLogin()) {
+            adapter.setRestaurants(new ArrayList<Restaurant>());
+            swipeContainer.setRefreshing(false);
+            return;
+        }
+
         Map<String, String> params = new HashMap<>();
         params.put(Config.key_latitude, String.valueOf(Config.latitude));
         params.put(Config.key_longtitude, String.valueOf(Config.longtitude));
