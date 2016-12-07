@@ -79,7 +79,10 @@ public class RestaurantsFragment extends Fragment implements AdapterView.OnItemC
         params.put(Config.key_longtitude, String.valueOf(Config.longtitude));
         params.put(Config.key_name, query);
 
-        RequestManager.backgroundRequest(Request.Method.GET, Config.HTTP_GET_RESTAURANT, params,
+        String url = EasyEatApplication.isLogin() ? Config.HTTP_GET_RESTAURANT :
+                Config.HTTP_GET_RESTAURANT_ANONYMOUS;
+
+        RequestManager.backgroundRequest(Request.Method.GET, url, params,
                 new BaseResponseListener((BaseActivity) getActivity(), null) {
                     @Override
                     public void onSuccessResponse(JSONObject response) {
