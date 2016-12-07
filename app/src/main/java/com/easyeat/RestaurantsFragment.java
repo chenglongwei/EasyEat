@@ -77,7 +77,7 @@ public class RestaurantsFragment extends Fragment implements AdapterView.OnItemC
         Map<String, String> params = new HashMap<>();
         params.put(Config.key_latitude, String.valueOf(Config.latitude));
         params.put(Config.key_longtitude, String.valueOf(Config.longtitude));
-        params.put(Config.key_query, query);
+        params.put(Config.key_name, query);
 
         RequestManager.backgroundRequest(Request.Method.GET, Config.HTTP_GET_RESTAURANT, params,
                 new BaseResponseListener((BaseActivity) getActivity(), null) {

@@ -23,10 +23,13 @@ public class Config {
     public static final String key_query = "query";
     public static final String key_accessToken = "accessToken";
     public static final String key_reservations = "reservations";
+    public static final String key_name = "name";
+    public static final String key_menu = "menu";
+    public static final String key_slots = "slots";
 
     // position information
-    public static double latitude = 0.0;
-    public static double longtitude = 0.0;
+    public static double latitude = 37.3351916;
+    public static double longtitude = -121.8832602;
 
     // URL
     public static final String HTTP_GET_RESTAURANT = HOST + "/restaurant";
@@ -40,6 +43,4 @@ public class Config {
     public static final String HTTP_POST_UPDATE_PROFILE = AUTH_HOST + "/user/userid";
 
     public static final String salt = "7i6UbiQXBRffBpmn%&V$(b9s_GXA(4KU";
-    public static final String key_menu = "menu";
-    public static final String key_slots = "slots";
 }
