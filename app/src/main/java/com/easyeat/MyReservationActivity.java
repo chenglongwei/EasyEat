@@ -1,13 +1,12 @@
 package com.easyeat;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
 import com.easyeat.adapter.ReservationAdapter;
 import com.easyeat.bean.ReservationInfo;
 
-public class MyReservationActivity extends AppCompatActivity {
+public class MyReservationActivity extends BaseActivity {
     private ReservationInfo[] reservationInfos;
     private ListView lv_reservations;
 

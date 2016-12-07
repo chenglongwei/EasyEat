@@ -84,6 +84,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 gotoProfileActivity();
                 break;
             case R.id.rl_food_order:
+                gotoOrderActivity();
                 break;
             case R.id.rl_reservation:
                 gotoMyReservationActivity();
@@ -91,6 +92,33 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             case R.id.rl_about_us:
                 break;
         }
+    }
+
+    private void gotoOrderActivity() {
+        if (!EasyEatApplication.isLogin()) {
+            Intent intent = new Intent(getActivity(), SignInActivity.class);
+            startActivity(intent);
+            return;
+        }
+
+        ProgressDialog dialog = ProgressDialog.show(getActivity(), "Getting your orders...",
+                "Please wait ...");
+        String start = Util.getCalculatedDate("yyyy-MM-dd", 0);
+        String end = Util.getCalculatedDate("yyyy-MM-dd", 14);
+        String url = Config.HTTP_GET_ORDER_TAKEOUT + "?start=" + start + "&end=" + end;
+        RequestManager.backgroundRequest(Request.Method.GET, url, null, null,
+                new BaseResponseListener((BaseActivity) getActivity(), dialog) {
+                    @Override
+                    public void onSuccessResponse(JSONObject response) {
+                        JSONArray dataJson = response.optJSONArray(Config.key_data);
+                        ReservationInfo[] reservationInfos =
+                                new Gson().fromJson(dataJson.toString(), ReservationInfo[].class);
+
+                        Intent intent = new Intent(getActivity(), OrderActivity.class);
+                        intent.putExtra(Config.key_reservations, reservationInfos);
+                        startActivity(intent);
+                    }
+                });
     }
 
     private void gotoMyReservationActivity() {

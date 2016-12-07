@@ -44,7 +44,8 @@
         <activity android:name=".MenuActivity" />
         <activity android:name=".ReservationActivity" />
         <activity android:name=".TakeOutActivity" />
-        <activity android:name=".MyReservationActivity"></activity>
+        <activity android:name=".MyReservationActivity" />
+        <activity android:name=".OrderActivity"></activity>
     </application>
 
 </manifest>
