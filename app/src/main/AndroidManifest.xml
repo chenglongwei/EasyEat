@@ -34,18 +34,40 @@
         <activity android:name=".RestaurantIntroActivity" />
         <activity
             android:name=".SignInActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".RegisterActivity"
-            android:label="@string/title_activity_register" />
+            android:label="@string/title_activity_register"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProfileActivity"
-            android:label="@string/title_activity_profile" />
-        <activity android:name=".MenuActivity" />
-        <activity android:name=".ReservationActivity" />
-        <activity android:name=".TakeOutActivity" />
-        <activity android:name=".MyReservationActivity" />
-        <activity android:name=".OrderActivity"></activity>
+            android:label="@string/title_activity_profile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MenuActivity"
+            android:label="@string/title_menu"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ReservationActivity"
+            android:label="@string/title_reservation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TakeOutActivity"
+            android:label="@string/title_take_out"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MyReservationActivity"
+            android:label="@string/title_my_reservation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OrderActivity"
+            android:label="@string/title_my_order"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OrderMenuActivity"
+            android:label="@string/title_order_menu"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

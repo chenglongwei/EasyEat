@@ -10,11 +10,6 @@ public class ReservationInfo implements Serializable {
     public Restaurant restaurant;
     public Reservation reservation;
     public MenuQuality[] menus;
-
-    class MenuQuality implements Serializable {
-        public Menu menu;
-        public int quality;
-    }
 }
 
 

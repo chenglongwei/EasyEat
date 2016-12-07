@@ -64,7 +64,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         ForwardLayout.top(rl_food_order, getString(R.string.food_order));
         // Reservation
         rl_reservation.setOnClickListener(this);
-        ForwardLayout.mid(rl_reservation, getString(R.string.reservation));
+        ForwardLayout.mid(rl_reservation, getString(R.string.my_reservation));
         // About us
         rl_about_us.setOnClickListener(this);
         ForwardLayout.bottom(rl_about_us, getString(R.string.about_us));

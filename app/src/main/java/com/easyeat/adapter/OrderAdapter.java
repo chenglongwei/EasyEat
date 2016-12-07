@@ -73,7 +73,7 @@ public class OrderAdapter extends BaseAdapter {
 
         holder.tv_date.setText(item.reservation.date);
         holder.tv_slot.setText(item.reservation.timeSlot);
-        holder.tv_price.setText(item.reservation.price + "$");
+        holder.tv_price.setText("$" + item.reservation.price);
 
         holder.tv_name.setText(item.restaurant.name);
         holder.tv_name.setOnClickListener(new View.OnClickListener() {

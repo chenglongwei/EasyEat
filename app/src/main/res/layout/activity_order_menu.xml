@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_order_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.easyeat.OrderMenuActivity">
+
+    <ListView
+        android:id="@+id/lv_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:divider="@color/activity_bg"
+        android:dividerHeight="@dimen/margin_tiny"
+        android:paddingBottom="@dimen/margin_small"
+        android:paddingTop="@dimen/margin_tiny"
+        tools:listitem="@layout/item_menu" />
+
+</RelativeLayout>

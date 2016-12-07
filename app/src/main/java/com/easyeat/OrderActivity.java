@@ -1,9 +1,11 @@
 package com.easyeat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.easyeat.adapter.OrderAdapter;
 import com.easyeat.bean.ReservationInfo;
@@ -27,6 +29,13 @@ public class OrderActivity extends BaseActivity implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ReservationInfo reservationInfo = (ReservationInfo) parent.getAdapter().getItem(position);
-        Log.d("Click on item");
+        if (reservationInfo.menus == null || reservationInfo.menus.length == 0) {
+            showToast("No order menus found", Toast.LENGTH_SHORT);
+            return;
+        }
+
+        Intent intent = new Intent(this, OrderMenuActivity.class);
+        intent.putExtra(Config.key_menu, reservationInfo.menus);
+        startActivity(intent);
     }
 }
