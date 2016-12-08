@@ -10,6 +10,7 @@ import java.util.Locale;
  */
 
 public class Util {
+    public static String DATE_FORMAT = "yyyy-MM-dd";
     /**
      * Pass your date format and no of days for minus from current
      * If you want to get previous date then pass days with minus sign

@@ -8,5 +8,5 @@ import java.io.Serializable;
 
 public class MenuQuality implements Serializable {
     public Menu menu;
-    public int quality;
+    public int quatity;
 }

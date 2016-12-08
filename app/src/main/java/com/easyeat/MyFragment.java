@@ -103,8 +103,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
         ProgressDialog dialog = ProgressDialog.show(getActivity(), "Getting your orders...",
                 "Please wait ...");
-        String start = Util.getCalculatedDate("yyyy-MM-dd", 0);
-        String end = Util.getCalculatedDate("yyyy-MM-dd", 14);
+        String start = Util.getCalculatedDate(Util.DATE_FORMAT, 0);
+        String end = Util.getCalculatedDate(Util.DATE_FORMAT, 14);
         String url = Config.HTTP_GET_ORDER_TAKEOUT + "?start=" + start + "&end=" + end;
         RequestManager.backgroundRequest(Request.Method.GET, url, null, null,
                 new BaseResponseListener((BaseActivity) getActivity(), dialog) {
@@ -130,8 +130,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
         ProgressDialog dialog = ProgressDialog.show(getActivity(), "Getting your reservation...",
                 "Please wait ...");
-        String start = Util.getCalculatedDate("yyyy-MM-dd", 0);
-        String end = Util.getCalculatedDate("yyyy-MM-dd", 14);
+        String start = Util.getCalculatedDate(Util.DATE_FORMAT, 0);
+        String end = Util.getCalculatedDate(Util.DATE_FORMAT, 14);
         String url = Config.HTTP_GET_TABLE_RESERVE + "?start=" + start + "&end=" + end;
         RequestManager.backgroundRequest(Request.Method.GET, url, null, null,
                 new BaseResponseListener((BaseActivity) getActivity(), dialog) {

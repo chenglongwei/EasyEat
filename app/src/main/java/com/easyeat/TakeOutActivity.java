@@ -56,7 +56,7 @@ public class TakeOutActivity extends BaseActivity implements View.OnClickListene
         int maxDay = 14;
         String[] date = new String[maxDay];
         for (int i = 0; i < maxDay; i++) {
-            date[i] = Util.getCalculatedDate("MM-dd-yyyy", i);
+            date[i] = Util.getCalculatedDate(Util.DATE_FORMAT, i);
         }
         np_date.setMinValue(0);
         np_date.setMaxValue(date.length - 1);
@@ -113,7 +113,7 @@ public class TakeOutActivity extends BaseActivity implements View.OnClickListene
             body.put("timeSlot", restaurant.slots[np_slots.getValue()]);
             body.put("isPrivate", true);
             body.put("takeOut", true);
-            body.put("date", Util.getCalculatedDate("MM-dd-yyyy", np_date.getValue()));
+            body.put("date", Util.getCalculatedDate(Util.DATE_FORMAT, np_date.getValue()));
             body.put("menus", menuArray);
         } catch (Exception e) {
             e.printStackTrace();

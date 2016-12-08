@@ -62,7 +62,7 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
         int maxDay = 14;
         String[] date = new String[maxDay];
         for (int i = 0; i < maxDay; i++) {
-            date[i] = Util.getCalculatedDate("MM-dd-yyyy", i);
+            date[i] = Util.getCalculatedDate(Util.DATE_FORMAT, i);
         }
         np_date.setMinValue(0);
         np_date.setMaxValue(date.length - 1);
@@ -93,7 +93,7 @@ public class ReservationActivity extends BaseActivity implements View.OnClickLis
             body.put("timeSlot", restaurant.slots[np_slots.getValue()]);
             body.put("isPrivate", cb_private.isChecked());
             body.put("takeOut", false);
-            body.put("date", Util.getCalculatedDate("MM-dd-yyyy", np_date.getValue()));
+            body.put("date", Util.getCalculatedDate(Util.DATE_FORMAT, np_date.getValue()));
             body.put("people", String.valueOf(np_people.getValue() + 1));
         } catch (Exception e) {
             e.printStackTrace();
