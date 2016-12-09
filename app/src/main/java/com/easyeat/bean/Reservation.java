@@ -14,4 +14,5 @@ public class Reservation implements Serializable {
     public boolean isPrivate;
     public boolean takeOut;
     public double price;
+    public String status;
 }

@@ -59,6 +59,7 @@ public class OrderAdapter extends BaseAdapter {
 
             holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
             holder.tv_address = (TextView) convertView.findViewById(R.id.tv_address);
+            holder.tv_status = (TextView) convertView.findViewById(R.id.tv_status);
             convertView.setTag(holder);
         }
 
@@ -85,6 +86,7 @@ public class OrderAdapter extends BaseAdapter {
             }
         });
         holder.tv_address.setText(item.restaurant.address);
+        holder.tv_status.setText(item.reservation.status);
     }
 
     private class Holder {
@@ -94,5 +96,6 @@ public class OrderAdapter extends BaseAdapter {
 
         TextView tv_name;
         TextView tv_address;
+        TextView tv_status;
     }
 }
