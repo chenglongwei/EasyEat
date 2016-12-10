@@ -14,11 +14,19 @@
 
     <!--Food Orders-->
     <include
+        android:id="@+id/rl_my_payment"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bt_height"
+        android:layout_below="@+id/rl_my_account"
+        layout="@layout/layout_forward" />
+
+    <!--Food Orders-->
+    <include
         android:id="@+id/rl_food_order"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bt_height"
         android:layout_marginTop="@dimen/margin_small"
-        android:layout_below="@+id/rl_my_account"
+        android:layout_below="@+id/rl_my_payment"
         layout="@layout/layout_forward" />
 
     <!--Reservations-->

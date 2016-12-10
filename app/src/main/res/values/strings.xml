@@ -9,7 +9,7 @@
     <string name="network_error">Network not stable</string>
     <string name="no_favorites">No favorites now.</string>
     <string name="action_search">search</string>
-    <string name="my_account">My Account</string>
+    <string name="my_account">My Profile</string>
     <string name="food_order">My Takeout Order</string>
     <string name="my_reservation">My Reservation</string>
     <string name="reservation">Reservation</string>
@@ -48,4 +48,11 @@
     <string name="title_my_reservation">My Reservation</string>
     <string name="title_my_order">My Order</string>
     <string name="title_order_menu">My Order Detail</string>
+    <string name="rl_my_payment">My Payment</string>
+    <string name="prompt_card_number">Card number</string>
+    <string name="prompt_name">Holder name</string>
+    <string name="prompt_holder_address">Holder address</string>
+    <string name="prompt_postcode">Zip code</string>
+    <string name="prompt_ccv">Security code</string>
+    <string name="error_card_number">Input card number</string>
 </resources>

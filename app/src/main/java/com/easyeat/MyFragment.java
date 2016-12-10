@@ -28,6 +28,7 @@ import org.json.JSONObject;
 
 public class MyFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout rl_my_account;
+    private RelativeLayout rl_my_payment;
 
     private RelativeLayout rl_food_order;
     private RelativeLayout rl_reservation;
@@ -48,6 +49,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         rl_my_account = (RelativeLayout) view.findViewById(R.id.rl_my_account);
+        rl_my_payment = (RelativeLayout) view.findViewById(R.id.rl_my_payment);
         rl_food_order = (RelativeLayout) view.findViewById(R.id.rl_food_order);
         rl_reservation = (RelativeLayout) view.findViewById(R.id.rl_reservation);
         rl_about_us = (RelativeLayout) view.findViewById(R.id.rl_about_us);
@@ -55,9 +57,13 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView() {
-        //My Account
+        // My Account
         rl_my_account.setOnClickListener(this);
-        fl_account = ForwardLayout.single(rl_my_account, getString(R.string.my_account));
+        fl_account = ForwardLayout.top(rl_my_account, getString(R.string.my_account));
+
+        // My Payment
+        rl_my_payment.setOnClickListener(this);
+        ForwardLayout.bottom(rl_my_payment, getString(R.string.rl_my_payment));
 
         // Food Order
         rl_food_order.setOnClickListener(this);
@@ -83,6 +89,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             case R.id.rl_my_account:
                 gotoProfileActivity();
                 break;
+            case R.id.rl_my_payment:
+                gotoMyPaymentActivity();
+                break;
             case R.id.rl_food_order:
                 gotoOrderActivity();
                 break;
@@ -92,6 +101,17 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             case R.id.rl_about_us:
                 break;
         }
+    }
+
+    private void gotoMyPaymentActivity() {
+        if (!EasyEatApplication.isLogin()) {
+            Intent intent = new Intent(getActivity(), SignInActivity.class);
+            startActivity(intent);
+            return;
+        }
+
+        Intent intent = new Intent(getActivity(), AddBankCardActivity.class);
+        startActivity(intent);
     }
 
     private void gotoOrderActivity() {

@@ -12,4 +12,5 @@ public class User implements Serializable {
     public String username;
     public String phonenumber;
     public String address;
+    public Payment[] paymentInfo;
 }

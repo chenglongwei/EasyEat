@@ -6,7 +6,7 @@ package com.easyeat;
 
 public class Config {
     public static final String TAG = "EasyEat";
-//    private static final String HOST = "https://private-ec7ca6-cmpe295.apiary-mock.com";
+    //    private static final String HOST = "https://private-ec7ca6-cmpe295.apiary-mock.com";
     private static final String AUTH_HOST = "http://35.163.147.127:8080";
     private static final String HOST = AUTH_HOST;
 
@@ -43,5 +43,8 @@ public class Config {
     public static final String HTTP_POST_SIGN_IN = AUTH_HOST + "/user/login";
     public static final String HTTP_POST_UPDATE_PROFILE = AUTH_HOST + "/user/userid";
 
+    public static final String HTTP_PAYMENT = HOST + "/payment";
+
     public static final String salt = "7i6UbiQXBRffBpmn%&V$(b9s_GXA(4KU";
+    public static final String key_paymentInfo = "paymentInfo";
 }

@@ -12,11 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.easyeat.bean.Payment;
 import com.easyeat.bean.User;
 import com.easyeat.http.BaseResponseListener;
 import com.easyeat.http.RequestManager;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 
@@ -118,7 +120,11 @@ public class SignInActivity extends BaseActivity implements OnClickListener {
                     public void onSuccessResponse(JSONObject response) {
                         JSONObject dataJson = response.optJSONObject(Config.key_data);
                         JSONObject userJson = dataJson.optJSONObject(Config.key_user);
+                        JSONArray paymentJson = dataJson.optJSONArray(Config.key_paymentInfo);
+
                         User user = new Gson().fromJson(userJson.toString(), User.class);
+                        Payment[] payments = new Gson().fromJson(paymentJson.toString(), Payment[].class);
+                        user.paymentInfo = payments;
                         EasyEatApplication.setCurrentUser(user);
 
                         String token = dataJson.optString(Config.key_accessToken);
