@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_restaurant_height"
+    android:background="@drawable/selector_my_list"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_small">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_card_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="989898989898989"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_medium"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="@string/delete"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/font_medium" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name on Card:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_medium" />
+
+    <TextView
+        android:id="@+id/tv_expire_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expire date:"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/font_medium" />
+
+</LinearLayout>

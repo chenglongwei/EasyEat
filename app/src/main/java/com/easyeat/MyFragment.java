@@ -110,7 +110,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             return;
         }
 
-        Intent intent = new Intent(getActivity(), AddBankCardActivity.class);
+        Intent intent = new Intent(getActivity(), BankCardActivity.class);
         startActivity(intent);
     }
 

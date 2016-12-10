@@ -55,4 +55,6 @@
     <string name="prompt_postcode">Zip code</string>
     <string name="prompt_ccv">Security code</string>
     <string name="error_card_number">Input card number</string>
+    <string name="action_add">Add</string>
+    <string name="delete">Delete</string>
 </resources>
