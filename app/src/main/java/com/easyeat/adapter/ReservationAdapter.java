@@ -2,6 +2,7 @@ package com.easyeat.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,7 +95,9 @@ public class ReservationAdapter extends BaseAdapter {
             }
         });
         holder.tv_address.setText(item.restaurant.address);
-        holder.tv_status.setText(item.reservation.status);
+        if (!TextUtils.isEmpty(item.reservation.status)) {
+            holder.tv_status.setText("Status: " + item.reservation.status);
+        }
     }
 
     private class Holder {

@@ -19,6 +19,6 @@ public class Reservation implements Serializable {
 
     public String formatPrice() {
         DecimalFormat df = new DecimalFormat("#.00");
-        return "$ " + df.format(price);
+        return "Price: " + "$" + df.format(price);
     }
 }

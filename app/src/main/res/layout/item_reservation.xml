@@ -1,47 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/item_restaurant_height"
-    android:background="@drawable/selector_my_list"
-    android:gravity="center_vertical"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/margin_tiny"
     android:paddingEnd="@dimen/margin_small"
     android:paddingStart="@dimen/margin_small">
-
-    <TextView
-        android:id="@+id/tv_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2017-12-10"
-        android:textColor="@color/black"
-        android:textSize="@dimen/font_medium"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tv_slot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_date"
-        android:layout_marginTop="@dimen/margin_tiny"
-        android:text="09:30"
-        android:textColor="@color/grey"
-        android:textSize="@dimen/font_small" />
-
-    <TextView
-        android:id="@+id/tv_people"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_slot"
-        android:layout_marginTop="@dimen/margin_tiny"
-        android:text="4"
-        android:textColor="@color/grey"
-        android:textSize="@dimen/font_small" />
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:padding="@dimen/margin_tiny"
+        android:paddingBottom="@dimen/margin_tiny"
+        android:paddingTop="@dimen/margin_tiny"
         android:text="Go Food"
         android:textColor="@color/blue"
         android:textSize="@dimen/font_medium"
@@ -51,18 +22,48 @@
         android:id="@+id/tv_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@id/tv_name"
         android:text="1400 Bowe Ave"
-        android:textColor="@color/grey"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_small" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_tiny">
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2017-12-10"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_small" />
+
+        <TextView
+            android:id="@+id/tv_slot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_tiny"
+            android:layout_toEndOf="@id/tv_date"
+            android:text="09:30"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_small" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_people"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_slot"
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:text="4"
+        android:textColor="@color/black"
         android:textSize="@dimen/font_small" />
 
     <TextView
         android:id="@+id/tv_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@id/tv_address"
         android:textColor="@color/blue"
         android:textSize="@dimen/font_small" />
-</RelativeLayout>
+</LinearLayout>

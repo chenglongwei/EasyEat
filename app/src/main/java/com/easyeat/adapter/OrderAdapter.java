@@ -90,7 +90,7 @@ public class OrderAdapter extends BaseAdapter {
             }
         });
         holder.tv_address.setText(item.restaurant.address);
-        holder.tv_status.setText(item.reservation.status);
+        holder.tv_status.setText("Status: " + item.reservation.status);
 
         holder.tv_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
