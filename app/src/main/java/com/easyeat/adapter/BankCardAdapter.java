@@ -87,15 +87,9 @@ public class BankCardAdapter extends BaseAdapter {
         holder.tv_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                JSONObject body = new JSONObject();
-                try {
-                    body = new JSONObject(new Gson().toJson(item));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
 
                 ProgressDialog dialog = ProgressDialog.show(context, "Deleting your card...", "Please wait ...");
-                RequestManager.backgroundRequest(Request.Method.DELETE, Config.HTTP_PAYMENT, body, null,
+                RequestManager.backgroundRequest(Request.Method.DELETE, Config.HTTP_PAYMENT + "/" + item.id, null, null,
                         new BaseResponseListener((BaseActivity) context, dialog) {
                             @Override
                             public void onSuccessResponse(JSONObject response) {
