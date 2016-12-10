@@ -57,4 +57,5 @@
     <string name="error_card_number">Input card number</string>
     <string name="action_add">Add</string>
     <string name="delete">Delete</string>
+    <string name="checkout">Checkout</string>
 </resources>

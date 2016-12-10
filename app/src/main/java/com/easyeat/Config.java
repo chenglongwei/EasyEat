@@ -39,11 +39,12 @@ public class Config {
     public static final String HTTP_GET_TABLE_RESERVE = HOST + "/table/reserve";
     public static final String HTTP_GET_ORDER_TAKEOUT = HOST + "/order/takeout";
 
+    public static final String HTTP_PAYMENT = HOST + "/payment";
+    public static final String HTTP_ORDER_CHECKOUT = HOST + "/order/checkout";
+
     public static final String HTTP_POST_REGISTER = AUTH_HOST + "/user/register";
     public static final String HTTP_POST_SIGN_IN = AUTH_HOST + "/user/login";
     public static final String HTTP_POST_UPDATE_PROFILE = AUTH_HOST + "/user/userid";
-
-    public static final String HTTP_PAYMENT = HOST + "/payment";
 
     public static final String salt = "7i6UbiQXBRffBpmn%&V$(b9s_GXA(4KU";
     public static final String key_paymentInfo = "paymentInfo";

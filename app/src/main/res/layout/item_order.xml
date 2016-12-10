@@ -13,18 +13,17 @@
         android:layout_height="wrap_content"
         android:text="2017-12-10"
         android:textColor="@color/black"
-        android:textSize="@dimen/font_medium"
-        android:textStyle="bold" />
+        android:textSize="@dimen/font_medium" />
 
     <TextView
         android:id="@+id/tv_slot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_date"
-        android:layout_marginTop="@dimen/margin_tiny"
+        android:layout_marginStart="@dimen/margin_tiny"
+        android:layout_toEndOf="@id/tv_date"
         android:text="09:30"
-        android:textColor="@color/grey"
-        android:textSize="@dimen/font_small" />
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_medium" />
 
     <TextView
         android:id="@+id/tv_price"
@@ -32,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_slot"
         android:layout_marginTop="@dimen/margin_tiny"
-        android:text="90.80$"
+        android:text="$90.80"
         android:textColor="@color/grey"
         android:textSize="@dimen/font_small" />
 
@@ -41,7 +40,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:padding="@dimen/margin_tiny"
         android:text="Go Food"
         android:textColor="@color/blue"
         android:textSize="@dimen/font_medium"
@@ -53,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_below="@id/tv_name"
+        android:layout_marginTop="@dimen/margin_tiny"
         android:text="1400 Bowe Ave"
         android:textColor="@color/grey"
         android:textSize="@dimen/font_small" />
@@ -61,8 +60,20 @@
         android:id="@+id/tv_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_below="@id/tv_address"
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:text="processing"
         android:textColor="@color/blue"
         android:textSize="@dimen/font_small" />
+
+    <TextView
+        android:id="@+id/tv_checkout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/tv_address"
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:text="@string/checkout"
+        android:textColor="@color/blue"
+        android:textStyle="bold" />
 </RelativeLayout>
