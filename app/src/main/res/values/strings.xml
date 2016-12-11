@@ -58,4 +58,6 @@
     <string name="action_add">Add</string>
     <string name="delete">Delete</string>
     <string name="checkout">Checkout</string>
+    <string name="title_add_bank">Add Card</string>
+    <string name="title_bank_card">My Bank Card</string>
 </resources>

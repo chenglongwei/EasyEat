@@ -92,12 +92,17 @@ public class OrderAdapter extends BaseAdapter {
         holder.tv_address.setText(item.restaurant.address);
         holder.tv_status.setText("Status: " + item.reservation.status);
 
-        holder.tv_checkout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((OrderActivity) context).checkout(item.reservation);
-            }
-        });
+        if ("processing".equalsIgnoreCase(item.reservation.status)) {
+            holder.tv_checkout.setVisibility(View.VISIBLE);
+            holder.tv_checkout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((OrderActivity) context).checkout(item.reservation);
+                }
+            });
+        } else {
+            holder.tv_checkout.setVisibility(View.GONE);
+        }
     }
 
     public void updateItem(Reservation update) {

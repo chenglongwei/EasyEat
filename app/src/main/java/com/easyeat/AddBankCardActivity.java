@@ -17,6 +17,7 @@ import com.easyeat.http.BaseResponseListener;
 import com.easyeat.http.RequestManager;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class AddBankCardActivity extends BaseActivity implements View.OnClickListener {
@@ -141,7 +142,7 @@ public class AddBankCardActivity extends BaseActivity implements View.OnClickLis
                 new BaseResponseListener(this, dialog) {
                     @Override
                     public void onSuccessResponse(JSONObject response) {
-                        JSONObject dataJson = response.optJSONObject(Config.key_data);
+                        JSONArray dataJson = response.optJSONArray(Config.key_data);
                         Payment[] payments = new Gson().fromJson(dataJson.toString(), Payment[].class);
 
                         User user = EasyEatApplication.getCurrentUser();

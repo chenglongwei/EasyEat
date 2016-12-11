@@ -6,23 +6,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.toolbox.NetworkImageView;
 import com.easyeat.BaseActivity;
 import com.easyeat.Config;
 import com.easyeat.EasyEatApplication;
 import com.easyeat.R;
-import com.easyeat.bean.Menu;
 import com.easyeat.bean.Payment;
 import com.easyeat.bean.User;
 import com.easyeat.http.BaseResponseListener;
 import com.easyeat.http.RequestManager;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 
@@ -93,7 +91,7 @@ public class BankCardAdapter extends BaseAdapter {
                         new BaseResponseListener((BaseActivity) context, dialog) {
                             @Override
                             public void onSuccessResponse(JSONObject response) {
-                                JSONObject dataJson = response.optJSONObject(Config.key_data);
+                                JSONArray dataJson = response.optJSONArray(Config.key_data);
                                 Payment[] payments = new Gson().fromJson(dataJson.toString(), Payment[].class);
 
                                 User user = EasyEatApplication.getCurrentUser();

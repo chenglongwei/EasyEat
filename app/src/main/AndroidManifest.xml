@@ -68,8 +68,15 @@
             android:name=".OrderMenuActivity"
             android:label="@string/title_order_menu"
             android:screenOrientation="portrait" />
-        <activity android:name=".AddBankCardActivity" />
-        <activity android:name=".BankCardActivity"></activity>
+        <activity
+            android:name=".AddBankCardActivity"
+            android:label="@string/title_add_bank"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".BankCardActivity"
+            android:label="@string/title_bank_card"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
